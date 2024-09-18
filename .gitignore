@@ -1,0 +1,11 @@
+# Ignore common Python virtual environment directories
+venv/
+env/
+.venv/
+.env/
+# VS Code settings
+.vscode/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
