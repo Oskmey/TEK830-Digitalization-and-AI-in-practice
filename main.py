@@ -11,8 +11,11 @@ def main():
     os.makedirs(model_dir, exist_ok=True)
 
 
-    image_save_path = os.path.join(save_dir, "promt_here")
-    pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", cache_dir=model_dir)
+    model_path = os.path.join(model_dir, "runwayml/stable-diffusion-v1-5")
+    if not os.path.exists(model_path):
+        pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", cache_dir=model_dir)
+    else:
+        pipeline = DiffusionPipeline.from_pretrained(model_path)
     
     
     image = pipeline("An image of a squirrel in Picasso style").images[0]
