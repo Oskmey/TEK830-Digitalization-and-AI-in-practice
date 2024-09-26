@@ -54,7 +54,7 @@ class ImageGenerator:
         if torch.cuda.is_available():
             self.pipeline.to("cuda")
         
-        tokenizer = AutoTokenizer.from_pretrained(self.model_name, use_fast=True)
+        tokenizer = AutoTokenizer.from_pretrained(self.model_name, use_fast=True) 
         token_promt = tokenizer(prompt, padding=True, truncation=True, return_tensors="pt")
     
         
