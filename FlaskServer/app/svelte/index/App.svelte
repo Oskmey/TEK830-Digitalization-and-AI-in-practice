@@ -17,7 +17,7 @@
 				href="https://github.com/priyanshu-shubham/flask-svelte"
 				class="text-blue-600">Flask Svelte</a> documentation to learn how to use Flask Svelte.
 		</p>
-	</div>
+	</div> 
 </main>
 
 <style global lang="postcss">
