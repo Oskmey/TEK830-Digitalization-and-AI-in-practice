@@ -381,15 +381,7 @@ var indexApp = (function () {
     	let t2_value = document.data.name + "";
     	let t2;
     	let t3;
-    	let p0;
-    	let t4;
-    	let a0;
-    	let t6;
-    	let t7;
-    	let p1;
-    	let t8;
-    	let a1;
-    	let t10;
+    	let p;
 
     	const block = {
     		c: function create() {
@@ -400,28 +392,12 @@ var indexApp = (function () {
     			t1 = text(" from\r\n\t\t\t");
     			t2 = text(t2_value);
     			t3 = space();
-    			p0 = element("p");
-    			t4 = text("Visit the ");
-    			a0 = element("a");
-    			a0.textContent = "Svelte tutorial";
-    			t6 = text(" to learn how to build Svelte apps.");
-    			t7 = space();
-    			p1 = element("p");
-    			t8 = text("Also, Visit the ");
-    			a1 = element("a");
-    			a1.textContent = "Flask Svelte";
-    			t10 = text(" documentation to learn how to use Flask Svelte.");
+    			p = element("p");
+    			p.textContent = "TEST";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
     			add_location(h1, file, 6, 2, 220);
-    			attr_dev(a0, "href", "https://svelte.dev/tutorial");
-    			attr_dev(a0, "class", "text-blue-600");
-    			add_location(a0, file, 11, 13, 386);
-    			attr_dev(p0, "class", "mb-2");
-    			add_location(p0, file, 10, 2, 355);
-    			attr_dev(a1, "href", "https://github.com/priyanshu-shubham/flask-svelte");
-    			attr_dev(a1, "class", "text-blue-600");
-    			add_location(a1, file, 15, 19, 542);
-    			add_location(p1, file, 14, 2, 518);
+    			attr_dev(p, "class", "font-title");
+    			add_location(p, file, 10, 2, 355);
     			attr_dev(div, "class", "p-10 border border-red-500 rounded-lg hover:bg-black");
     			add_location(div, file, 5, 1, 150);
     			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-screen bg-neutral-900 text-white");
@@ -438,15 +414,7 @@ var indexApp = (function () {
     			append_dev(h1, t1);
     			append_dev(h1, t2);
     			append_dev(div, t3);
-    			append_dev(div, p0);
-    			append_dev(p0, t4);
-    			append_dev(p0, a0);
-    			append_dev(p0, t6);
-    			append_dev(div, t7);
-    			append_dev(div, p1);
-    			append_dev(p1, t8);
-    			append_dev(p1, a1);
-    			append_dev(p1, t10);
+    			append_dev(div, p);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*greetings*/ 1) set_data_dev(t0, /*greetings*/ ctx[0]);

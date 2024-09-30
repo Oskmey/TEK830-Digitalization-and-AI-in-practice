@@ -8,15 +8,7 @@
 			{greetings} from
 			{document.data.name}
 		</h1>
-		<p class="mb-2">
-			Visit the <a href="https://svelte.dev/tutorial" class="text-blue-600"
-				>Svelte tutorial</a> to learn how to build Svelte apps.
-		</p>
-		<p>
-			Also, Visit the <a
-				href="https://github.com/priyanshu-shubham/flask-svelte"
-				class="text-blue-600">Flask Svelte</a> documentation to learn how to use Flask Svelte.
-		</p>
+		<p class=" font-title">TEST</p>
 	</div> 
 </main>
 
@@ -24,4 +16,7 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
+
+	@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 </style>
