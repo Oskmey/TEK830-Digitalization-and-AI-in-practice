@@ -366,45 +366,119 @@ var indexApp = (function () {
     const file = "app\\svelte\\index\\App.svelte";
 
     function create_fragment(ctx) {
-    	let main;
     	let div;
-    	let h1;
+    	let nav;
+    	let ul;
+    	let li0;
+    	let a0;
     	let t1;
+    	let li1;
+    	let a1;
+    	let t3;
+    	let li2;
+    	let a2;
+    	let t5;
+    	let li3;
+    	let a3;
+    	let t7;
+    	let main;
+    	let button;
+    	let h1;
+    	let t9;
     	let p;
 
     	const block = {
     		c: function create() {
-    			main = element("main");
     			div = element("div");
+    			nav = element("nav");
+    			ul = element("ul");
+    			li0 = element("li");
+    			a0 = element("a");
+    			a0.textContent = "Home";
+    			t1 = space();
+    			li1 = element("li");
+    			a1 = element("a");
+    			a1.textContent = "About";
+    			t3 = space();
+    			li2 = element("li");
+    			a2 = element("a");
+    			a2.textContent = "Services";
+    			t5 = space();
+    			li3 = element("li");
+    			a3 = element("a");
+    			a3.textContent = "Contact";
+    			t7 = space();
+    			main = element("main");
+    			button = element("button");
     			h1 = element("h1");
     			h1.textContent = "Click to add image";
-    			t1 = space();
+    			t9 = space();
     			p = element("p");
-    			p.textContent = "KRAFT";
+    			p.textContent = "The image should contain your product with a white background";
+    			attr_dev(a0, "href", "#home");
+    			attr_dev(a0, "class", "hover:underline");
+    			add_location(a0, file, 7, 21, 150);
+    			attr_dev(li0, "class", "mb-4");
+    			add_location(li0, file, 7, 4, 133);
+    			attr_dev(a1, "href", "#about");
+    			attr_dev(a1, "class", "hover:underline");
+    			add_location(a1, file, 8, 21, 226);
+    			attr_dev(li1, "class", "mb-4");
+    			add_location(li1, file, 8, 4, 209);
+    			attr_dev(a2, "href", "#services");
+    			attr_dev(a2, "class", "hover:underline");
+    			add_location(a2, file, 9, 21, 304);
+    			attr_dev(li2, "class", "mb-4");
+    			add_location(li2, file, 9, 4, 287);
+    			attr_dev(a3, "href", "#contact");
+    			attr_dev(a3, "class", "hover:underline");
+    			add_location(a3, file, 10, 21, 388);
+    			attr_dev(li3, "class", "mb-4");
+    			add_location(li3, file, 10, 4, 371);
+    			add_location(ul, file, 6, 2, 123);
+    			attr_dev(nav, "class", "w-1/5 h-screen bg-dark-200 text-white p-4");
+    			add_location(nav, file, 5, 1, 64);
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 6, 2, 233);
-    			attr_dev(p, "class", "text-3xl font-title");
-    			add_location(p, file, 7, 2, 336);
-    			attr_dev(div, "class", "p-8 bg-dark-200 border border-white rounded-lg hover:bg-black");
-    			add_location(div, file, 5, 1, 154);
-    			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-screen bg-black text-white font-body");
-    			add_location(main, file, 4, 0, 47);
+    			add_location(h1, file, 16, 3, 682);
+    			attr_dev(p, "class", "text-xs");
+    			add_location(p, file, 17, 3, 786);
+    			attr_dev(button, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-300");
+    			add_location(button, file, 15, 2, 565);
+    			attr_dev(main, "class", "flex items-center justify-center h-full w-full bg-black text-white font-body");
+    			add_location(main, file, 14, 1, 470);
+    			attr_dev(div, "class", "flex h-screen w-screen");
+    			add_location(div, file, 4, 0, 25);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, main, anchor);
-    			append_dev(main, div);
-    			append_dev(div, h1);
-    			append_dev(div, t1);
-    			append_dev(div, p);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, nav);
+    			append_dev(nav, ul);
+    			append_dev(ul, li0);
+    			append_dev(li0, a0);
+    			append_dev(ul, t1);
+    			append_dev(ul, li1);
+    			append_dev(li1, a1);
+    			append_dev(ul, t3);
+    			append_dev(ul, li2);
+    			append_dev(li2, a2);
+    			append_dev(ul, t5);
+    			append_dev(ul, li3);
+    			append_dev(li3, a3);
+    			append_dev(div, t7);
+    			append_dev(div, main);
+    			append_dev(main, button);
+    			append_dev(button, h1);
+    			append_dev(button, t9);
+    			append_dev(button, p);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(main);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -419,44 +493,22 @@ var indexApp = (function () {
     	return block;
     }
 
-    function instance($$self, $$props, $$invalidate) {
+    function instance($$self, $$props) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let { greetings } = $$props;
-
-    	$$self.$$.on_mount.push(function () {
-    		if (greetings === undefined && !('greetings' in $$props || $$self.$$.bound[$$self.$$.props['greetings']])) {
-    			console.warn("<App> was created without expected prop 'greetings'");
-    		}
-    	});
-
-    	const writable_props = ['greetings'];
+    	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$$set = $$props => {
-    		if ('greetings' in $$props) $$invalidate(0, greetings = $$props.greetings);
-    	};
-
-    	$$self.$capture_state = () => ({ greetings });
-
-    	$$self.$inject_state = $$props => {
-    		if ('greetings' in $$props) $$invalidate(0, greetings = $$props.greetings);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [greetings];
+    	return [];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { greetings: 0 });
+    		init(this, options, instance, create_fragment, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -464,14 +516,6 @@ var indexApp = (function () {
     			options,
     			id: create_fragment.name
     		});
-    	}
-
-    	get greetings() {
-    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set greetings(value) {
-    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
