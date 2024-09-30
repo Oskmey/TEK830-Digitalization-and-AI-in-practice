@@ -334,13 +334,6 @@ var indexApp = (function () {
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
     }
-    function set_data_dev(text, data) {
-        data = '' + data;
-        if (text.data === data)
-            return;
-        dispatch_dev('SvelteDOMSetData', { node: text, data });
-        text.data = data;
-    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -376,11 +369,7 @@ var indexApp = (function () {
     	let main;
     	let div;
     	let h1;
-    	let t0;
     	let t1;
-    	let t2_value = document.data.name + "";
-    	let t2;
-    	let t3;
     	let p;
 
     	const block = {
@@ -388,19 +377,17 @@ var indexApp = (function () {
     			main = element("main");
     			div = element("div");
     			h1 = element("h1");
-    			t0 = text(/*greetings*/ ctx[0]);
-    			t1 = text(" from\r\n\t\t\t");
-    			t2 = text(t2_value);
-    			t3 = space();
+    			h1.textContent = "Click to add image";
+    			t1 = space();
     			p = element("p");
-    			p.textContent = "TEST";
+    			p.textContent = "KRAFT";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 6, 2, 220);
-    			attr_dev(p, "class", "font-title");
-    			add_location(p, file, 10, 2, 355);
-    			attr_dev(div, "class", "p-10 border border-red-500 rounded-lg hover:bg-black");
-    			add_location(div, file, 5, 1, 150);
-    			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-screen bg-neutral-900 text-white");
+    			add_location(h1, file, 6, 2, 233);
+    			attr_dev(p, "class", "text-3xl font-title");
+    			add_location(p, file, 7, 2, 336);
+    			attr_dev(div, "class", "p-8 bg-dark-200 border border-white rounded-lg hover:bg-black");
+    			add_location(div, file, 5, 1, 154);
+    			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-screen bg-black text-white font-body");
     			add_location(main, file, 4, 0, 47);
     		},
     		l: function claim(nodes) {
@@ -410,15 +397,10 @@ var indexApp = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, div);
     			append_dev(div, h1);
-    			append_dev(h1, t0);
-    			append_dev(h1, t1);
-    			append_dev(h1, t2);
-    			append_dev(div, t3);
+    			append_dev(div, t1);
     			append_dev(div, p);
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*greetings*/ 1) set_data_dev(t0, /*greetings*/ ctx[0]);
-    		},
+    		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
