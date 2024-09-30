@@ -3,7 +3,8 @@
 	let dropdowns = {
 		season: false,
 		holiday: false,
-		style: false
+		style: false,
+		cfg: false
 	};
 
 	function toggleDropdown(key) {
@@ -13,8 +14,8 @@
 
 <div class="flex h-screen w-screen">
 	<nav class="w-1/5 h-screen bg-dark-200 text-white p-4 text-base border-r text-center">
-		<h1 class="mb-4 p-2 text-5xl font-title tracking-widest font-bold">KRAFT</h1>
-		<ul>
+		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">KRAFT</h1>
+		<ul class="mt-8">
 			<!-- Season -->
 			<li>
 				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-300" on:click={() => toggleDropdown('season')}>
@@ -58,6 +59,22 @@
 						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-300">Old</button></li>
 						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-300">Trash</button></li>
 					</ul>
+				{/if}
+			</li>
+		</ul>
+
+		<!-- Custom Settings -->
+		<p class="text-left p-2 mt-8">Custom Settings</p>
+		<ul>
+			<!-- CFG -->
+			<li>
+				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-300" on:click={() => toggleDropdown('cfg')}>
+					CFG
+					<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({dropdowns.cfg ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+				</button>
+				{#if dropdowns.cfg}
+					<!-- TODO Add stuff here -->
+					 <p>Nothing here yet.</p>
 				{/if}
 			</li>
 		</ul>
