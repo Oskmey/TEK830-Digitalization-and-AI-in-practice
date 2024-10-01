@@ -94,7 +94,7 @@
 				<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
 				<p class="text-xs">The image should contain your product with a white background</p>
 			{:else}
-				<img src={imageSrc} id="output" style="display:block;" alt='Uploaded_image' />
+				<img src={imageSrc} class="max-w-xs h-auto object-contain" id="output" style="display:block;" alt='Uploaded_image' />
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
@@ -106,16 +106,4 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
-
-	label[for="filepicker"] img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-	label[for="filepicker"]{
-        max-width: 500px;
-        max-height: 500px;
-    }
-
 </style>
