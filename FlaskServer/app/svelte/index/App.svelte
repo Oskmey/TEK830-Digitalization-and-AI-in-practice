@@ -1,4 +1,5 @@
 <script>
+	import {fileDrop} from './file.js';
 	// All our dropdowns as a map
 	let dropdowns = {
 		season: false,
@@ -10,6 +11,10 @@
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
 	}
+
+	
+
+
 </script>
 
 <div class="flex h-screen w-screen">
@@ -81,11 +86,12 @@
 	</nav>
 
 	<main class="flex items-center justify-center h-full w-full bg-black text-white font-body">
-		<button class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100">
-			<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
-			<p class="text-xs">The image should contain your product with a white background</p>
-		</button> 
-	</main>
+		<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
+		  <h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
+		  <p class="text-xs">The image should contain your product with a white background</p>
+		</label>
+		<input type="file" id="filepicker" multiple style="display: none;" on:change={fileDrop} />
+	  </main>
 </div>
 
 
