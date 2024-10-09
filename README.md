@@ -47,7 +47,7 @@ The aim of this project is to make img2img generation accessible and easy to use
 1. **Clone the Repository**
 
         ```bash
-        git clone https://github.com/yourusername/yourproject.git
+        git clone *http link*
         cd yourproject/backend
         ```
 
