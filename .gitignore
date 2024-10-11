@@ -9,3 +9,16 @@ env/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Node.js dependencies
+node_modules/
+
+# Svelte build artifacts
+public/build/
+*.svelte.js
+*.svelte.css
+
+# Other common Node.js build artifacts
+dist/
+build/
+*.log

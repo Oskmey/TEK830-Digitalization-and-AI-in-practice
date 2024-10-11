@@ -88,7 +88,7 @@
 		</ul>
 	</nav>
 
-	<main class="flex items-center justify-center h-full w-full bg-black text-white font-body">
+	<main class="flex flex-col items-center justify-center h-full w-full bg-black text-white font-body">
 		<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
 			{#if !imageSrc}
 				<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
@@ -98,6 +98,9 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
+		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc}>
+			Generate
+		</button>
 	</main>
 </div>
 

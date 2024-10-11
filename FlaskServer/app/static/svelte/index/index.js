@@ -372,6 +372,10 @@ var indexApp = (function () {
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
     }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
+    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -682,7 +686,7 @@ var indexApp = (function () {
     			attr_dev(img, "id", "output");
     			set_style(img, "display", "block");
     			attr_dev(img, "alt", "Uploaded_image");
-    			add_location(img, file, 96, 4, 4703);
+    			add_location(img, file, 96, 4, 4712);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -722,9 +726,9 @@ var indexApp = (function () {
     			p = element("p");
     			p.textContent = "The image should contain your product with a white background";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 93, 4, 4499);
+    			add_location(h1, file, 93, 4, 4508);
     			attr_dev(p, "class", "text-xs");
-    			add_location(p, file, 94, 4, 4603);
+    			add_location(p, file, 94, 4, 4612);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -791,6 +795,11 @@ var indexApp = (function () {
     	let label;
     	let t16;
     	let input;
+    	let t17;
+    	let button4;
+    	let t18;
+    	let button4_class_value;
+    	let button4_disabled_value;
     	let mounted;
     	let dispose;
     	let if_block0 = /*dropdowns*/ ctx[1].season && create_if_block_4(ctx);
@@ -855,6 +864,9 @@ var indexApp = (function () {
     			if_block4.c();
     			t16 = space();
     			input = element("input");
+    			t17 = space();
+    			button4 = element("button");
+    			t18 = text("Generate");
     			attr_dev(h1, "class", "p-2 text-5xl font-title tracking-widest font-bold");
     			add_location(h1, file, 24, 2, 463);
     			attr_dev(path0, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
@@ -918,13 +930,21 @@ var indexApp = (function () {
     			add_location(nav, file, 23, 1, 374);
     			attr_dev(label, "for", "filepicker");
     			attr_dev(label, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer");
-    			add_location(label, file, 91, 2, 4332);
+    			add_location(label, file, 91, 2, 4341);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/**");
     			attr_dev(input, "id", "filepicker");
     			set_style(input, "display", "none");
-    			add_location(input, file, 99, 2, 4843);
-    			attr_dev(main, "class", "flex items-center justify-center h-full w-full bg-black text-white font-body");
+    			add_location(input, file, 99, 2, 4852);
+    			attr_dev(button4, "type", "button");
+
+    			attr_dev(button4, "class", button4_class_value = "mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*imageSrc*/ ctx[0]
+    			? 'hover:bg-dark-100 cursor-pointer'
+    			: 'opacity-50 cursor-not-allowed') + " text-4xl");
+
+    			button4.disabled = button4_disabled_value = !/*imageSrc*/ ctx[0];
+    			add_location(button4, file, 100, 2, 4960);
+    			attr_dev(main, "class", "flex flex-col items-center justify-center h-full w-full bg-black text-white font-body");
     			add_location(main, file, 90, 1, 4238);
     			attr_dev(div, "class", "flex h-screen w-screen");
     			add_location(div, file, 22, 0, 336);
@@ -978,6 +998,9 @@ var indexApp = (function () {
     			if_block4.m(label, null);
     			append_dev(main, t16);
     			append_dev(main, input);
+    			append_dev(main, t17);
+    			append_dev(main, button4);
+    			append_dev(button4, t18);
 
     			if (!mounted) {
     				dispose = [
@@ -1062,6 +1085,16 @@ var indexApp = (function () {
     					if_block4.c();
     					if_block4.m(label, null);
     				}
+    			}
+
+    			if (dirty & /*imageSrc*/ 1 && button4_class_value !== (button4_class_value = "mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*imageSrc*/ ctx[0]
+    			? 'hover:bg-dark-100 cursor-pointer'
+    			: 'opacity-50 cursor-not-allowed') + " text-4xl")) {
+    				attr_dev(button4, "class", button4_class_value);
+    			}
+
+    			if (dirty & /*imageSrc*/ 1 && button4_disabled_value !== (button4_disabled_value = !/*imageSrc*/ ctx[0])) {
+    				prop_dev(button4, "disabled", button4_disabled_value);
     			}
     		},
     		i: noop,
