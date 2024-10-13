@@ -403,36 +403,33 @@ var indexApp = (function () {
         $inject_state() { }
     }
 
+    // In your file.js
     function fileDrop(event, updateImage) {
+      const files = event.target.files;
 
-        const files = event.target.files;
-        
-        try{
-          if(files.length > 1){
-            throw new Error("Upload only one file");
-          }
-          if(!files[0].type.startsWith('image/')){
-            throw new Error("Upload only image files");
-          }
+      try {
+          const file = files[0]; 
+          updateImage(file);
+
           const reader = new FileReader();
           reader.onload = () => {
-            var dataURL = reader.result;
-            updateImage(dataURL);
+              var dataURL = reader.result;
+              updateImage(dataURL, file);
           };
-          reader.readAsDataURL(files[0]);
-        }
-        catch(err){
+          reader.readAsDataURL(file);
+      } catch (err) {
           console.error(err);
-        }
       }
+    }
 
-    function uploadImage(image, promt="cute squirrel", sampler = "Euler a", steps = 20, cfg_scale=7) {
+    function uploadImage(image, promt="cute squirrel", sampler = "Euler a", steps = 20, cfg_scale=7.0) {
         const formData = new FormData();
 
         formData.append('image', image);
         formData.append('promt', promt);
         formData.append('sampler', sampler);
         formData.append('steps', steps);
+        formData.append('cfg_scale', cfg_scale);
 
         fetch('/upload', {
             method: 'POST',
