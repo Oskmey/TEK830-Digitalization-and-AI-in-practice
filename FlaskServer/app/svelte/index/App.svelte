@@ -1,5 +1,6 @@
 <script>
 	import {fileDrop} from './file.js';
+	import {uploadImage} from './flask.js';
 
 	let imageSrc = '';
 	let dropdowns = {
@@ -98,7 +99,7 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc}>
+		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageSrc)}>
 			Generate
 		</button>
 	</main>
