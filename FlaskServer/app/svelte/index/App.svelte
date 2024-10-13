@@ -1,8 +1,9 @@
 <script>
-	import {fileDrop} from './file.js';
-	import {uploadImage} from './flask.js';
+	import { fileDrop } from './file.js';
+	import { uploadImage } from './flask.js';
 
 	let imageSrc = '';
+	let imageFile = null;
 	let dropdowns = {
 		season: false,
 		holiday: false,
@@ -10,14 +11,15 @@
 		cfg: false
 	};
 
-
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
 	}
-
     function handleFileDrop(event) {
-        fileDrop(event, (src) => imageSrc = src); //
-    }
+        fileDrop(event, (src, file) => {
+            imageSrc = src;
+            imageFile = file; // Save the File object for upload
+        });
+	}
 
 </script>
 
@@ -99,7 +101,7 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageSrc)}>
+		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
 			Generate
 		</button>
 	</main>
