@@ -1,4 +1,8 @@
 <script>
+    import { debug } from "svelte/internal";
+	import { writable } from 'svelte/store';
+	import Check from "../../static/svelte/svg/Check.svelte";
+
 	// All our dropdowns as a map
 	let dropdowns = {
 		season: false,
@@ -12,43 +16,48 @@
 	};
 
 	// All categories
-	let seasons = {
+	let seasons = writable({
 		spring: false,
 		summer: false,
 		fall: false,
 		winter: false
-	};
+	});
 
-	let holiday = {
+	let holiday = writable({
 		easter: false,
 		thanksgiving: false,
 		christmas: false
-	};
+	});
 
-	let style = {
+	let style = writable({
 		modern: false,
 		old: false,
 		trash: false
-	};
+	});
 
-	// Sets given bool in a map =true and all other =false
-	function setTrue(map, key) {
-		if (map[key] == true) {
-			for (let k in map) {
-				map[k] = false;
-			}
-			return;
-		}
-		for (let k in map) {
-			map[k] = false;
-		}
-		map[key] = true;
-	}
+    // Function to set one key to true, and others to false
+    function setTrue(store, key) {
+        store.update(map => {
+            // If the current key is already true, set all values to false
+            if (map[key] === true) {
+                for (let k in map) {
+                    map[k] = false;
+                }
+                return map;  // Return updated map with all false
+            }
 
+            // Otherwise, set all to false, and the specified key to true
+            for (let k in map) {
+                map[k] = false;
+            }
+            map[key] = true;
+            return map;  // Return updated map
+        });
+    }
 </script>
 
-<div class="flex h-screen w-screen">
-	<nav class="w-1/5 h-screen bg-dark-200 text-white p-4 text-base border-r text-center">
+<div class="flex h-screen max-w-screen">
+	<nav class="w-1/5 min-h-max bg-dark-200 text-white p-4 text-base border-r text-center">
 		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">KRAFT</h1>
 		<ul class="mt-8">
 			<!-- Season -->
@@ -59,10 +68,10 @@
 				</button>
 				{#if dropdowns.season}
 					<ul>
-						<li class="ml-8"><button on:click={() => setTrue(seasons, 'spring')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Spring</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('season', 'summer')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Summer</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('season', 'fall')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Fall</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('season', 'winter')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Winter</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'spring')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Spring{#if $seasons.spring}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'summer')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Summer{#if $seasons.summer}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'fall')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Fall{#if $seasons.fall}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'winter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Winter{#if $seasons.winter}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -75,9 +84,9 @@
 				</button>
 				{#if dropdowns.holiday}
 					<ul>
-						<li class="ml-8"><button on:click={() => setTrue(holiday, 'easter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Easter{#if holiday.easter}<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('holiday', 'thanksgiving')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Thanksgiving</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('holiday', 'christmas')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Christmas</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'easter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Easter{#if $holiday.easter}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'thanksgiving')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Thanksgiving{#if $holiday.thanksgiving}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'christmas')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Christmas{#if $holiday.christmas}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -90,9 +99,9 @@
 				</button>
 				{#if dropdowns.style}
 					<ul>
-						<li class="ml-8"><button on:click={() => setTrue('style', 'modern')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Modern</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('style', 'old')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Old</button></li>
-						<li class="ml-8"><button on:click={() => setTrue('style', 'trash')} class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Trash</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'modern')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Modern{#if $style.modern}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'old')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Old{#if $style.old}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'trash')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Trash{#if $style.trash}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -115,13 +124,13 @@
 		</ul>
 	</nav>
 
-	<main class="flex flex-col items-center justify-center h-full w-full bg-black text-white font-body">
+	<main class="flex flex-col items-center justify-center min-h-screen w-full bg-black text-white font-body">
 		<!-- Image box -->
 		<button class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100">
 			<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
 			<p class="text-xs">The image should contain your product with a white background</p>
 		</button> 
-		{#if seasons.spring}
+		{#if $seasons.spring}
 			<div class="py-8 px-32 mt-32 bg-white"></div>
 		{/if}
 	</main>
