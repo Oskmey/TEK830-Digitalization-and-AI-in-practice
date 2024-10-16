@@ -15,11 +15,21 @@
 		cfg: false
 	};
 
+	class Option {
+		constructor(isActive, name, prompt) {
+			this.isActive = isActive;
+			this.name = name;
+			this.prompt = prompt
+		}
+	}
+
+	
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
 	};
 
 	// All categories
+	// spring: new Option("spring", "fresh, new, cool", false)
 	let seasons = writable({
 		spring: false,
 		summer: false,
@@ -68,6 +78,109 @@
         });
 	}
 
+    // import { fileDrop } from './file.js';
+    // import { uploadImage } from './flask.js';
+    // import Check from "../../static/svelte/svg/Check.svelte";
+    // import Cross from "../../static/svelte/svg/Cross.svelte";
+
+    // let imageSrc = '';
+    // let imageFile = null;
+    // let dropdowns = {
+    //     season: false,
+    //     holiday: false,
+    //     style: false,
+    //     cfg: false
+    // };
+
+    // // Define Option and Category classes
+    // class Option {
+    //     constructor(name, prompt) {
+    //         this.name = name;
+    //         this.prompt = prompt;
+    //         this.isActive = false;
+    //     }
+    // }
+
+    // class Category {
+    //     constructor(name, options) {
+    //         this.name = name;
+    //         this.options = options; // Array of Option instances
+    //     }
+
+    //     setActiveOption(optionName) {
+    //         let currentActive = this.options.find(option => option.isActive);
+    //         if (currentActive && currentActive.name === optionName) {
+    //             // If the option is already active, deactivate it
+    //             currentActive.isActive = false;
+    //         } else {
+    //             this.options.forEach(option => {
+    //                 option.isActive = (option.name === optionName);
+    //             });
+    //         }
+    //         // Reassign the options array to trigger reactivity
+    //         this.options = [...this.options];
+    //     }
+
+    //     getActiveOption() {
+    //         return this.options.find(option => option.isActive);
+    //     }
+    // }
+
+    // // Initialize categories with options
+    // let seasonsCategory = new Category('Season', [
+    //     new Option('Spring', 'spring'),
+    //     new Option('Summer', 'summer'),
+    //     new Option('Fall', 'fall'),
+    //     new Option('Winter', 'winter')
+    // ]);
+
+    // let holidaysCategory = new Category('Holiday', [
+    //     new Option('Easter', 'easter'),
+    //     new Option('Thanksgiving', 'thanksgiving'),
+    //     new Option('Christmas', 'christmas')
+    // ]);
+
+    // let stylesCategory = new Category('Style', [
+    //     new Option('Modern', 'modern'),
+    //     new Option('Old', 'old'),
+    //     new Option('Trash', 'trash')
+    // ]);
+
+    // // Function to toggle dropdowns
+    // function toggleDropdown(key) {
+    //     dropdowns[key] = !dropdowns[key];
+    // }
+
+    // // Function to set active option in a category
+    // function setActiveOption(category, optionName) {
+    //     category.setActiveOption(optionName);
+    // }
+
+    // // Handle file drop
+    // function handleFileDrop(event) {
+    //     fileDrop(event, (src, file) => {
+    //         imageSrc = src;
+    //         imageFile = file; // Save the File object for upload
+    //     });
+    // }
+
+    // // Function to get the selected prompts
+    // function getSelectedPrompts() {
+    //     let prompts = [];
+    //     let activeSeason = seasonsCategory.getActiveOption();
+    //     if (activeSeason) {
+    //         prompts.push(activeSeason.prompt);
+    //     }
+    //     let activeHoliday = holidaysCategory.getActiveOption();
+    //     if (activeHoliday) {
+    //         prompts.push(activeHoliday.prompt);
+    //     }
+    //     let activeStyle = stylesCategory.getActiveOption();
+    //     if (activeStyle) {
+    //         prompts.push(activeStyle.prompt);
+    //     }
+    //     return prompts;
+    // }
 </script>
 
 <div class="flex h-screen max-w-screen">
