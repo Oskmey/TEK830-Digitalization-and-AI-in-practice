@@ -2,7 +2,7 @@
 	import { fileDrop } from './file.js';
 	import { uploadImage } from './flask.js';
     import { debug } from "svelte/internal";
-	import { writable } from 'svelte/store';
+	import { writable, get } from 'svelte/store';
 	import Check from "../../static/svelte/svg/Check.svelte";
 	import Cross from "../../static/svelte/svg/Cross.svelte";
 
@@ -39,6 +39,7 @@
 		trash: false
 	});
 
+	
     // Function to set one key to true, and others to false
     function setTrue(store, key) {
         store.update(map => {
@@ -147,7 +148,7 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
+		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile, [get(seasons), get(holiday), get(style)])}>
 			Generate
 		</button>
 	</main>

@@ -18,6 +18,7 @@ def generate_image():
     try:
         image = Image.open(request.files['image'])
         prompt = request.form.get('prompt')
+        print(prompt)
         sampler = request.form.get('sampler')
         steps = int(request.form.get('steps'))
         cfg_scale = float(request.form.get('cfg_scale'))
