@@ -22,3 +22,6 @@ public/build/
 dist/
 build/
 *.log
+
+# ingonre index
+app/static/index/
