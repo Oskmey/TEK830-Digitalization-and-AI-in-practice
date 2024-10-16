@@ -2,6 +2,7 @@
     import { debug } from "svelte/internal";
 	import { writable } from 'svelte/store';
 	import Check from "../../static/svelte/svg/Check.svelte";
+	import Cross from "../../static/svelte/svg/Cross.svelte";
 
 	// All our dropdowns as a map
 	let dropdowns = {
@@ -124,15 +125,19 @@
 		</ul>
 	</nav>
 
+	<!--  -->
+	<section class="w-1/5 min-h-max bg-black text-white">
+		{#if $seasons.spring}
+			<div class="flex justify-between items-center w-4/5 mx-auto text-left py-4 mt-32 bg-dark-200 border border-white rounded-lg">Spring<Cross/></div>
+		{/if}
+	</section>
+
 	<main class="flex flex-col items-center justify-center min-h-screen w-full bg-black text-white font-body">
 		<!-- Image box -->
 		<button class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100">
 			<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
 			<p class="text-xs">The image should contain your product with a white background</p>
 		</button> 
-		{#if $seasons.spring}
-			<div class="py-8 px-32 mt-32 bg-white"></div>
-		{/if}
 	</main>
 </div>
 
