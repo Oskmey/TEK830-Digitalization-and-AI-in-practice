@@ -5,12 +5,16 @@
 	import Cross from "../../static/svelte/svg/Cross.svelte";
 
 	// All our dropdowns as a map
+	import {fileDrop} from './file.js';
+
+	let imageSrc = '';
 	let dropdowns = {
 		season: false,
 		holiday: false,
 		style: false,
 		cfg: false
 	};
+
 
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
@@ -55,6 +59,12 @@
             return map;  // Return updated map
         });
     }
+	}
+
+    function handleFileDrop(event) {
+        fileDrop(event, (src) => imageSrc = src); //
+    }
+
 </script>
 
 <div class="flex h-screen max-w-screen">
@@ -125,19 +135,16 @@
 		</ul>
 	</nav>
 
-	<!--  -->
-	<section class="w-1/5 min-h-max bg-black text-white">
-		{#if $seasons.spring}
-			<div class="flex justify-between items-center w-4/5 mx-auto text-left py-4 mt-32 bg-dark-200 border border-white rounded-lg">Spring<Cross/></div>
-		{/if}
-	</section>
-
-	<main class="flex flex-col items-center justify-center min-h-screen w-full bg-black text-white font-body">
-		<!-- Image box -->
-		<button class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100">
-			<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
-			<p class="text-xs">The image should contain your product with a white background</p>
-		</button> 
+	<main class="flex items-center justify-center h-full w-full bg-black text-white font-body">
+		<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
+			{#if !imageSrc}
+				<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
+				<p class="text-xs">The image should contain your product with a white background</p>
+			{:else}
+				<img src={imageSrc} class="max-w-xs h-auto object-contain" id="output" style="display:block;" alt='Uploaded_image' />
+			{/if}
+		</label>
+		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
 	</main>
 </div>
 
