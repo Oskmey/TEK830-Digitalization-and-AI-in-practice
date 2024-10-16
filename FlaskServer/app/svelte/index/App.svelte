@@ -59,7 +59,7 @@
             return map;  // Return updated map
         });
     }
-	}
+	
 
     function handleFileDrop(event) {
         fileDrop(event, (src) => imageSrc = src); //
