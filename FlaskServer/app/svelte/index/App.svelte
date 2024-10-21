@@ -74,13 +74,26 @@
 	}
 
 	// Custom Settings and default values
-	let imageWidth = 800;
-	let imageHeight = 800;
-	let cfgValue = 20; 
-	let steps = 20;
-	let denoise = 0.7;
+	class AdvancedSetting {
+		constructor(name, value, min, max, step, descrition) {
+			this.name = name;
+			this.value = value;
+			this.min = min;
+			this.max = max;
+			this.step = step;
+			this.descrition = descrition;
+			this.showTooltip = false;
+		}
+  	}
 
-	let showTooltip = false;
+	let advancedSettings = [
+		new AdvancedSetting('Width', 800, 100, 1600, 10, 'Width... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
+		new AdvancedSetting('Height', 800, 100, 1600, 10, 'Height... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
+		new AdvancedSetting('CFG', 20, 0, 100, 1, 'CFG... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
+		new AdvancedSetting('Steps', 20, 1, 100, 1, 'Steps... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
+		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Denoise... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.')
+	];
+
 
 </script>
 
@@ -139,24 +152,23 @@
 		<p class="text-left p-2 mt-8">Advanced Settings</p>
 		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover each setting to get a description.</p>
 		<ul>
-			<!-- CFG -->
-			<li>
+			{#each advancedSettings as setting}
 				<div class="flex justify-between items-center w-full p-2 gap-4 rounded">
 					<div class="relative inline-block hover:cursor-pointer"
-							on:mouseenter={() => showTooltip = true}
-							on:mouseleave={() => showTooltip = false}>
-						<p class="">CFG</p>
+							on:mouseenter={() => setting.showTooltip = true}
+							on:mouseleave={() => setting.showTooltip = false}>
+						<p class="">{setting.name}</p>
 						
-						{#if showTooltip}
+						{#if setting.showTooltip}
 							<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
-								CFG... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.
+								{setting.descrition}							
 							</div>
 						{/if}
 					</div>					
-					<input type="range" min="0" max="100" step="1" bind:value={cfgValue} />
-					<p class=" text-right w-[2.5ch]">{cfgValue}</p>
+					<input type="range" min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} />
+					<p class="text-right w-[4ch]">{setting.value}</p>
 				</div>
-			</li>
+			{/each}
 		</ul>
 	</nav>
 
@@ -164,7 +176,7 @@
 	<section class="w-1/5 h-full bg-black text-white p-4">
 		{#each Object.keys($seasons) as season}
 			{#if $seasons[season]}
-				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
 					{season.charAt(0).toUpperCase() + season.slice(1)} <!-- Capitalizes the season name -->
 					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(seasons, season)}><Cross/></button>
 				</div>
@@ -173,7 +185,7 @@
 
 		{#each Object.keys($holiday) as holi}
 			{#if $holiday[holi]}
-				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
 					{holi.charAt(0).toUpperCase() + holi.slice(1)} <!-- Capitalizes the holi name -->
 					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(holiday, holi)}><Cross/></button>
 				</div>
@@ -182,7 +194,7 @@
 
 		{#each Object.keys($style) as key}
 			{#if $style[key]}
-				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
 					{key.charAt(0).toUpperCase() + key.slice(1)} <!-- Capitalizes the style name -->
 					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(style, key)}><Cross/></button>
 				</div>
