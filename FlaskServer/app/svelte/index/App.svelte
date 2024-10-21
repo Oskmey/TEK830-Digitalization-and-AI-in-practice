@@ -73,6 +73,15 @@
         });
 	}
 
+	// Custom Settings and default values
+	let imageWidth = 800;
+	let imageHeight = 800;
+	let cfgValue = 20; 
+	let steps = 20;
+	let denoise = 0.7;
+
+	let showTooltip = false;
+
 </script>
 
 <div class="flex h-screen max-w-screen">
@@ -126,23 +135,32 @@
 			</li>
 		</ul>
 
-		<!-- Custom Settings -->
-		<p class="text-left p-2 mt-8">Custom Settings</p>
+		<!-- Advanced Settings -->
+		<p class="text-left p-2 mt-8">Advanced Settings</p>
+		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover each setting to get a description.</p>
 		<ul>
 			<!-- CFG -->
 			<li>
-				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100" on:click={() => toggleDropdown('cfg')}>
-					CFG
-					<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({dropdowns.cfg ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-				</button>
-				{#if dropdowns.cfg}
-					<!-- TODO Add stuff here -->
-					 <p>Nothing here yet.</p>
-				{/if}
+				<div class="flex justify-between items-center w-full p-2 gap-4 rounded">
+					<div class="relative inline-block hover:cursor-pointer"
+							on:mouseenter={() => showTooltip = true}
+							on:mouseleave={() => showTooltip = false}>
+						<p class="">CFG</p>
+						
+						{#if showTooltip}
+							<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
+								CFG... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.
+							</div>
+						{/if}
+					</div>					
+					<input type="range" min="0" max="100" step="1" bind:value={cfgValue} />
+					<p class=" text-right w-[2.5ch]">{cfgValue}</p>
+				</div>
 			</li>
 		</ul>
 	</nav>
 
+	<!-- Active filters -->
 	<section class="w-1/5 h-full bg-black text-white p-4">
 		{#each Object.keys($seasons) as season}
 			{#if $seasons[season]}
