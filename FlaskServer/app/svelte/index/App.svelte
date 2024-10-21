@@ -1,6 +1,10 @@
 <script>
 	import { fileDrop } from './file.js';
 	import { uploadImage } from './flask.js';
+    import { debug } from "svelte/internal";
+	import { writable, get } from 'svelte/store';
+	import Check from "../../static/svelte/svg/Check.svelte";
+	import Cross from "../../static/svelte/svg/Cross.svelte";
 
 	let imageSrc = '';
 	let imageFile = null;
@@ -11,9 +15,62 @@
 		cfg: false
 	};
 
+	class Option {
+		constructor(isActive, name, prompt) {
+			this.isActive = isActive;
+			this.name = name;
+			this.prompt = prompt
+		}
+	}
+
+	
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
-	}
+	};
+
+	// All categories
+	// spring: new Option("spring", "fresh, new, cool", false)
+	let seasons = writable({
+		spring: false,
+		summer: false,
+		fall: false,
+		winter: false
+	});
+
+	let holiday = writable({
+		easter: false,
+		thanksgiving: false,
+		christmas: false
+	});
+
+	let style = writable({
+		modern: false,
+		old: false,
+		trash: false
+	});
+
+	
+    // Function to set one key to true, and others to false
+    function setTrue(store, key) {
+        store.update(map => {
+            // If the current key is already true, set all values to false
+            if (map[key] === true) {
+                for (let k in map) {
+                    map[k] = false;
+                }
+                return map;  // Return updated map with all false
+            }
+
+            // Otherwise, set all to false, and the specified key to true
+            for (let k in map) {
+                map[k] = false;
+            }
+            map[key] = true;
+            return map;  // Return updated map
+        });
+    }
+	
+
     function handleFileDrop(event) {
         fileDrop(event, (src, file) => {
             imageSrc = src;
@@ -21,10 +78,113 @@
         });
 	}
 
+    // import { fileDrop } from './file.js';
+    // import { uploadImage } from './flask.js';
+    // import Check from "../../static/svelte/svg/Check.svelte";
+    // import Cross from "../../static/svelte/svg/Cross.svelte";
+
+    // let imageSrc = '';
+    // let imageFile = null;
+    // let dropdowns = {
+    //     season: false,
+    //     holiday: false,
+    //     style: false,
+    //     cfg: false
+    // };
+
+    // // Define Option and Category classes
+    // class Option {
+    //     constructor(name, prompt) {
+    //         this.name = name;
+    //         this.prompt = prompt;
+    //         this.isActive = false;
+    //     }
+    // }
+
+    // class Category {
+    //     constructor(name, options) {
+    //         this.name = name;
+    //         this.options = options; // Array of Option instances
+    //     }
+
+    //     setActiveOption(optionName) {
+    //         let currentActive = this.options.find(option => option.isActive);
+    //         if (currentActive && currentActive.name === optionName) {
+    //             // If the option is already active, deactivate it
+    //             currentActive.isActive = false;
+    //         } else {
+    //             this.options.forEach(option => {
+    //                 option.isActive = (option.name === optionName);
+    //             });
+    //         }
+    //         // Reassign the options array to trigger reactivity
+    //         this.options = [...this.options];
+    //     }
+
+    //     getActiveOption() {
+    //         return this.options.find(option => option.isActive);
+    //     }
+    // }
+
+    // // Initialize categories with options
+    // let seasonsCategory = new Category('Season', [
+    //     new Option('Spring', 'spring'),
+    //     new Option('Summer', 'summer'),
+    //     new Option('Fall', 'fall'),
+    //     new Option('Winter', 'winter')
+    // ]);
+
+    // let holidaysCategory = new Category('Holiday', [
+    //     new Option('Easter', 'easter'),
+    //     new Option('Thanksgiving', 'thanksgiving'),
+    //     new Option('Christmas', 'christmas')
+    // ]);
+
+    // let stylesCategory = new Category('Style', [
+    //     new Option('Modern', 'modern'),
+    //     new Option('Old', 'old'),
+    //     new Option('Trash', 'trash')
+    // ]);
+
+    // // Function to toggle dropdowns
+    // function toggleDropdown(key) {
+    //     dropdowns[key] = !dropdowns[key];
+    // }
+
+    // // Function to set active option in a category
+    // function setActiveOption(category, optionName) {
+    //     category.setActiveOption(optionName);
+    // }
+
+    // // Handle file drop
+    // function handleFileDrop(event) {
+    //     fileDrop(event, (src, file) => {
+    //         imageSrc = src;
+    //         imageFile = file; // Save the File object for upload
+    //     });
+    // }
+
+    // // Function to get the selected prompts
+    // function getSelectedPrompts() {
+    //     let prompts = [];
+    //     let activeSeason = seasonsCategory.getActiveOption();
+    //     if (activeSeason) {
+    //         prompts.push(activeSeason.prompt);
+    //     }
+    //     let activeHoliday = holidaysCategory.getActiveOption();
+    //     if (activeHoliday) {
+    //         prompts.push(activeHoliday.prompt);
+    //     }
+    //     let activeStyle = stylesCategory.getActiveOption();
+    //     if (activeStyle) {
+    //         prompts.push(activeStyle.prompt);
+    //     }
+    //     return prompts;
+    // }
 </script>
 
-<div class="flex h-screen w-screen">
-	<nav class="w-1/5 h-screen bg-dark-200 text-white p-4 text-base border-r text-center">
+<div class="flex h-screen max-w-screen">
+	<nav class="w-1/5 min-h-max bg-dark-200 text-white p-4 text-base border-r text-center">
 		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">KRAFT</h1>
 		<ul class="mt-8">
 			<!-- Season -->
@@ -35,10 +195,10 @@
 				</button>
 				{#if dropdowns.season}
 					<ul>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Spring</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Summer</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Fall</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Winter</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'spring')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Spring{#if $seasons.spring}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'summer')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Summer{#if $seasons.summer}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'fall')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Fall{#if $seasons.fall}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(seasons, 'winter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Winter{#if $seasons.winter}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -51,9 +211,9 @@
 				</button>
 				{#if dropdowns.holiday}
 					<ul>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Thanksgiving</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Easter</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Christmas</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'easter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Easter{#if $holiday.easter}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'thanksgiving')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Thanksgiving{#if $holiday.thanksgiving}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(holiday, 'christmas')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Christmas{#if $holiday.christmas}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -66,9 +226,9 @@
 				</button>
 				{#if dropdowns.style}
 					<ul>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Modern</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Old</button></li>
-						<li class="ml-8"><button class="w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Trash</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'modern')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Modern{#if $style.modern}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'old')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Old{#if $style.old}<Check/>{/if}</button></li>
+						<li class="ml-8"><button on:click={() => setTrue(style, 'trash')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Trash{#if $style.trash}<Check/>{/if}</button></li>
 					</ul>
 				{/if}
 			</li>
@@ -101,7 +261,7 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
+		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile, [get(seasons), get(holiday), get(style)])}>
 			Generate
 		</button>
 	</main>
