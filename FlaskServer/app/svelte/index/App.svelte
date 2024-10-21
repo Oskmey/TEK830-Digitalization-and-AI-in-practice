@@ -59,6 +59,12 @@
         });
     }
 	
+	// Set the specified key to false
+	function setFalse(store, key) {
+		store.update(map => {
+			return { ...map, [key]: false }; 
+		});
+	}
 
     function handleFileDrop(event) {
         fileDrop(event, (src, file) => {
@@ -137,6 +143,35 @@
 		</ul>
 	</nav>
 
+	<section class="w-1/5 h-full bg-black text-white p-4">
+		{#each Object.keys($seasons) as season}
+			{#if $seasons[season]}
+				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+					{season.charAt(0).toUpperCase() + season.slice(1)} <!-- Capitalizes the season name -->
+					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(seasons, season)}><Cross/></button>
+				</div>
+			{/if}
+		{/each}
+
+		{#each Object.keys($holiday) as holi}
+			{#if $holiday[holi]}
+				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+					{holi.charAt(0).toUpperCase() + holi.slice(1)} <!-- Capitalizes the holi name -->
+					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(holiday, holi)}><Cross/></button>
+				</div>
+			{/if}
+		{/each}
+
+		{#each Object.keys($style) as key}
+			{#if $style[key]}
+				<div class="flex justify-between items-center w-full p-2 mb-4 border border-white rounded">
+					{key.charAt(0).toUpperCase() + key.slice(1)} <!-- Capitalizes the style name -->
+					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(style, key)}><Cross/></button>
+				</div>
+			{/if}
+		{/each}
+	</section>
+
 	<main class="flex flex-col items-center justify-center h-full w-full bg-black text-white font-body">
 		<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
 			{#if !imageSrc}
@@ -147,7 +182,7 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'} text-4xl" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
+		<button type="button" class="mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'}" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
 			Generate
 		</button>
 	</main>
