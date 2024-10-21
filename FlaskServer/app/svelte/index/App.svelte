@@ -96,6 +96,7 @@
 
 	// Read me
 	let readMeDescription = ''
+	let readMeToolTip = false
 
 </script>
 
@@ -172,17 +173,6 @@
 				</li>
 			{/each}
 		</ul>
-		<div class="relative inline-block hover:cursor-pointer"
-				on:mouseenter={() => setting.showTooltip = true}
-				on:mouseleave={() => setting.showTooltip = false}>
-			<p>Read me!</p>
-			
-			{#if setting.showTooltip}
-				<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
-					{setting.descrition}							
-				</div>
-			{/if}
-		</div>
 	</nav>
 
 	<!-- Active filters -->
