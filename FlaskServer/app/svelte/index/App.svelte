@@ -94,12 +94,14 @@
 		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Denoise... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.')
 	];
 
+	// Read me
+	let readMeDescription = ''
 
 </script>
 
-<div class="flex h-screen max-w-screen">
-	<nav class="w-1/5 min-h-max bg-dark-200 text-white p-4 text-base border-r text-center">
-		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">KRAFT</h1>
+<div class="flex min-h-screen max-w-screen bg-black">
+	<nav class="min-h-max bg-dark-200 text-white p-4 text-base border-r text-center">
+		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">PÅHITTIG</h1>
 		<ul class="mt-8">
 			<!-- Season -->
 			<li>
@@ -153,11 +155,11 @@
 		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover each setting to get a description.</p>
 		<ul>
 			{#each advancedSettings as setting}
-				<div class="flex justify-between items-center w-full p-2 gap-4 rounded">
+				<li class="flex justify-between items-center w-full p-2 gap-2 rounded">
 					<div class="relative inline-block hover:cursor-pointer"
 							on:mouseenter={() => setting.showTooltip = true}
 							on:mouseleave={() => setting.showTooltip = false}>
-						<p class="">{setting.name}</p>
+						<p class="w-[7ch] text-left">{setting.name}</p>
 						
 						{#if setting.showTooltip}
 							<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
@@ -165,11 +167,22 @@
 							</div>
 						{/if}
 					</div>					
-					<input type="range" min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} />
+					<input class="hover:cursor-pointer" type="range" min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} />
 					<p class="text-right w-[4ch]">{setting.value}</p>
-				</div>
+				</li>
 			{/each}
 		</ul>
+		<div class="relative inline-block hover:cursor-pointer"
+				on:mouseenter={() => setting.showTooltip = true}
+				on:mouseleave={() => setting.showTooltip = false}>
+			<p>Read me!</p>
+			
+			{#if setting.showTooltip}
+				<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
+					{setting.descrition}							
+				</div>
+			{/if}
+		</div>
 	</nav>
 
 	<!-- Active filters -->
@@ -202,7 +215,7 @@
 		{/each}
 	</section>
 
-	<main class="flex flex-col items-center justify-center h-full w-full bg-black text-white font-body">
+	<main class="flex flex-col items-center justify-center h-screen w-full bg-black text-white font-body">
 		<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
 			{#if !imageSrc}
 				<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>

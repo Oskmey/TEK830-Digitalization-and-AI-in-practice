@@ -810,22 +810,22 @@ var indexApp = (function () {
     			t6 = text("Winter");
     			if (if_block3) if_block3.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 111, 23, 3946);
+    			add_location(button0, file, 111, 23, 3956);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 111, 6, 3929);
+    			add_location(li0, file, 111, 6, 3939);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 112, 23, 4189);
+    			add_location(button1, file, 112, 23, 4199);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 112, 6, 4172);
+    			add_location(li1, file, 112, 6, 4182);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 113, 23, 4432);
+    			add_location(button2, file, 113, 23, 4442);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 113, 6, 4415);
+    			add_location(li2, file, 113, 6, 4425);
     			attr_dev(button3, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button3, file, 114, 23, 4669);
+    			add_location(button3, file, 114, 23, 4679);
     			attr_dev(li3, "class", "ml-8");
-    			add_location(li3, file, 114, 6, 4652);
-    			add_location(ul, file, 110, 5, 3917);
+    			add_location(li3, file, 114, 6, 4662);
+    			add_location(ul, file, 110, 5, 3927);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1178,18 +1178,18 @@ var indexApp = (function () {
     			t4 = text("Christmas");
     			if (if_block2) if_block2.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 127, 23, 5488);
+    			add_location(button0, file, 127, 23, 5498);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 127, 6, 5471);
+    			add_location(li0, file, 127, 6, 5481);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 128, 23, 5731);
+    			add_location(button1, file, 128, 23, 5741);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 128, 6, 5714);
+    			add_location(li1, file, 128, 6, 5724);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 129, 23, 5992);
+    			add_location(button2, file, 129, 23, 6002);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 129, 6, 5975);
-    			add_location(ul, file, 126, 5, 5459);
+    			add_location(li2, file, 129, 6, 5985);
+    			add_location(ul, file, 126, 5, 5469);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1473,18 +1473,18 @@ var indexApp = (function () {
     			t4 = text("Trash");
     			if (if_block2) if_block2.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 142, 23, 6813);
+    			add_location(button0, file, 142, 23, 6823);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 142, 6, 6796);
+    			add_location(li0, file, 142, 6, 6806);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 143, 23, 7052);
+    			add_location(button1, file, 143, 23, 7062);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 143, 6, 7035);
+    			add_location(li1, file, 143, 6, 7045);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 144, 23, 7282);
+    			add_location(button2, file, 144, 23, 7292);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 144, 6, 7265);
-    			add_location(ul, file, 141, 5, 6784);
+    			add_location(li2, file, 144, 6, 7275);
+    			add_location(ul, file, 141, 5, 6794);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1740,7 +1740,7 @@ var indexApp = (function () {
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "class", "absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10");
-    			add_location(div, file, 162, 7, 8115);
+    			add_location(div, file, 162, 7, 8141);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1767,8 +1767,8 @@ var indexApp = (function () {
 
     // (155:3) {#each advancedSettings as setting}
     function create_each_block_3(ctx) {
-    	let div1;
-    	let div0;
+    	let li;
+    	let div;
     	let p0;
     	let t0_value = /*setting*/ ctx[42].name + "";
     	let t0;
@@ -1801,8 +1801,8 @@ var indexApp = (function () {
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
+    			li = element("li");
+    			div = element("div");
     			p0 = element("p");
     			t0 = text(t0_value);
     			t1 = space();
@@ -1813,39 +1813,40 @@ var indexApp = (function () {
     			p1 = element("p");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(p0, "class", "");
-    			add_location(p0, file, 159, 6, 8035);
-    			attr_dev(div0, "class", "relative inline-block hover:cursor-pointer");
-    			add_location(div0, file, 156, 5, 7856);
+    			attr_dev(p0, "class", "w-[7ch] text-left");
+    			add_location(p0, file, 159, 6, 8044);
+    			attr_dev(div, "class", "relative inline-block hover:cursor-pointer");
+    			add_location(div, file, 156, 5, 7865);
+    			attr_dev(input, "class", "hover:cursor-pointer");
     			attr_dev(input, "type", "range");
     			attr_dev(input, "min", input_min_value = /*setting*/ ctx[42].min);
     			attr_dev(input, "max", input_max_value = /*setting*/ ctx[42].max);
     			attr_dev(input, "step", input_step_value = /*setting*/ ctx[42].step);
-    			add_location(input, file, 167, 5, 8366);
+    			add_location(input, file, 167, 5, 8392);
     			attr_dev(p1, "class", "text-right w-[4ch]");
-    			add_location(p1, file, 168, 5, 8484);
-    			attr_dev(div1, "class", "flex justify-between items-center w-full p-2 gap-4 rounded");
-    			add_location(div1, file, 155, 4, 7777);
+    			add_location(p1, file, 168, 5, 8539);
+    			attr_dev(li, "class", "flex justify-between items-center w-full p-2 gap-2 rounded");
+    			add_location(li, file, 155, 4, 7787);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div0, p0);
+    			insert_dev(target, li, anchor);
+    			append_dev(li, div);
+    			append_dev(div, p0);
     			append_dev(p0, t0);
-    			append_dev(div0, t1);
-    			if (if_block) if_block.m(div0, null);
-    			append_dev(div1, t2);
-    			append_dev(div1, input);
+    			append_dev(div, t1);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(li, t2);
+    			append_dev(li, input);
     			set_input_value(input, /*setting*/ ctx[42].value);
-    			append_dev(div1, t3);
-    			append_dev(div1, p1);
+    			append_dev(li, t3);
+    			append_dev(li, p1);
     			append_dev(p1, t4);
-    			append_dev(div1, t5);
+    			append_dev(li, t5);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(div0, "mouseenter", mouseenter_handler, false, false, false, false),
-    					listen_dev(div0, "mouseleave", mouseleave_handler, false, false, false, false),
+    					listen_dev(div, "mouseenter", mouseenter_handler, false, false, false, false),
+    					listen_dev(div, "mouseleave", mouseleave_handler, false, false, false, false),
     					listen_dev(input, "change", input_change_input_handler),
     					listen_dev(input, "input", input_change_input_handler)
     				];
@@ -1863,7 +1864,7 @@ var indexApp = (function () {
     				} else {
     					if_block = create_if_block_4(ctx);
     					if_block.c();
-    					if_block.m(div0, null);
+    					if_block.m(div, null);
     				}
     			} else if (if_block) {
     				if_block.d(1);
@@ -1889,7 +1890,7 @@ var indexApp = (function () {
     			if (dirty[0] & /*advancedSettings*/ 8 && t4_value !== (t4_value = /*setting*/ ctx[42].value + "")) set_data_dev(t4, t4_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(li);
     			if (if_block) if_block.d();
     			mounted = false;
     			run_all(dispose);
@@ -1932,9 +1933,9 @@ var indexApp = (function () {
     			button = element("button");
     			create_component(cross.$$.fragment);
     			attr_dev(button, "class", "rounded hover:bg-dark-200");
-    			add_location(button, file, 180, 5, 8940);
+    			add_location(button, file, 180, 5, 8994);
     			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
-    			add_location(div, file, 178, 4, 8736);
+    			add_location(div, file, 178, 4, 8790);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2072,9 +2073,9 @@ var indexApp = (function () {
     			button = element("button");
     			create_component(cross.$$.fragment);
     			attr_dev(button, "class", "rounded hover:bg-dark-200");
-    			add_location(button, file, 189, 5, 9347);
+    			add_location(button, file, 189, 5, 9401);
     			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
-    			add_location(div, file, 187, 4, 9149);
+    			add_location(div, file, 187, 4, 9203);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2214,9 +2215,9 @@ var indexApp = (function () {
     			create_component(cross.$$.fragment);
     			t2 = space();
     			attr_dev(button, "class", "rounded hover:bg-dark-200");
-    			add_location(button, file, 198, 5, 9745);
+    			add_location(button, file, 198, 5, 9799);
     			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
-    			add_location(div, file, 196, 4, 9548);
+    			add_location(div, file, 196, 4, 9602);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2343,7 +2344,7 @@ var indexApp = (function () {
     			attr_dev(img, "id", "output");
     			set_style(img, "display", "block");
     			attr_dev(img, "alt", "Uploaded_image");
-    			add_location(img, file, 210, 4, 10373);
+    			add_location(img, file, 210, 4, 10429);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -2383,9 +2384,9 @@ var indexApp = (function () {
     			p = element("p");
     			p.textContent = "The image should contain your product with a white background";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 207, 4, 10166);
+    			add_location(h1, file, 207, 4, 10222);
     			attr_dev(p, "class", "text-xs");
-    			add_location(p, file, 208, 4, 10271);
+    			add_location(p, file, 208, 4, 10327);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -2520,7 +2521,7 @@ var indexApp = (function () {
     			div = element("div");
     			nav = element("nav");
     			h1 = element("h1");
-    			h1.textContent = "KRAFT";
+    			h1.textContent = "PÅHITTIG";
     			t1 = space();
     			ul0 = element("ul");
     			li0 = element("li");
@@ -2588,9 +2589,9 @@ var indexApp = (function () {
     			button3 = element("button");
     			t21 = text("Generate");
     			attr_dev(h1, "class", "p-2 text-5xl font-title tracking-widest font-bold");
-    			add_location(h1, file, 101, 2, 3292);
+    			add_location(h1, file, 101, 2, 3299);
     			attr_dev(path0, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path0, file, 107, 211, 3798);
+    			add_location(path0, file, 107, 211, 3808);
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "height", "16px");
     			attr_dev(svg0, "viewBox", "0 -960 960 960");
@@ -2598,12 +2599,12 @@ var indexApp = (function () {
     			attr_dev(svg0, "fill", "#ffffff");
     			set_style(svg0, "transform", "rotate(" + (/*dropdowns*/ ctx[2].season ? '90deg' : '0deg') + ")");
     			set_style(svg0, "transition", "transform 0.3s ease");
-    			add_location(svg0, file, 107, 5, 3592);
+    			add_location(svg0, file, 107, 5, 3602);
     			attr_dev(button0, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 105, 4, 3420);
-    			add_location(li0, file, 104, 3, 3410);
+    			add_location(button0, file, 105, 4, 3430);
+    			add_location(li0, file, 104, 3, 3420);
     			attr_dev(path1, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path1, file, 123, 212, 5339);
+    			add_location(path1, file, 123, 212, 5349);
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "height", "16px");
     			attr_dev(svg1, "viewBox", "0 -960 960 960");
@@ -2611,12 +2612,12 @@ var indexApp = (function () {
     			attr_dev(svg1, "fill", "#ffffff");
     			set_style(svg1, "transform", "rotate(" + (/*dropdowns*/ ctx[2].holiday ? '90deg' : '0deg') + ")");
     			set_style(svg1, "transition", "transform 0.3s ease");
-    			add_location(svg1, file, 123, 5, 5132);
+    			add_location(svg1, file, 123, 5, 5142);
     			attr_dev(button1, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 121, 4, 4958);
-    			add_location(li1, file, 120, 3, 4948);
+    			add_location(button1, file, 121, 4, 4968);
+    			add_location(li1, file, 120, 3, 4958);
     			attr_dev(path2, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path2, file, 138, 210, 6666);
+    			add_location(path2, file, 138, 210, 6676);
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "height", "16px");
     			attr_dev(svg2, "viewBox", "0 -960 960 960");
@@ -2624,29 +2625,29 @@ var indexApp = (function () {
     			attr_dev(svg2, "fill", "#ffffff");
     			set_style(svg2, "transform", "rotate(" + (/*dropdowns*/ ctx[2].style ? '90deg' : '0deg') + ")");
     			set_style(svg2, "transition", "transform 0.3s ease");
-    			add_location(svg2, file, 138, 5, 6461);
+    			add_location(svg2, file, 138, 5, 6471);
     			attr_dev(button2, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 136, 4, 6291);
-    			add_location(li2, file, 135, 3, 6281);
+    			add_location(button2, file, 136, 4, 6301);
+    			add_location(li2, file, 135, 3, 6291);
     			attr_dev(ul0, "class", "mt-8");
-    			add_location(ul0, file, 102, 2, 3368);
+    			add_location(ul0, file, 102, 2, 3378);
     			attr_dev(p0, "class", "text-left p-2 mt-8");
-    			add_location(p0, file, 151, 2, 7571);
+    			add_location(p0, file, 151, 2, 7581);
     			attr_dev(p1, "class", "text-left px-2 mb-4 text-xs text-gray-500");
-    			add_location(p1, file, 152, 2, 7626);
-    			add_location(ul1, file, 153, 2, 7727);
-    			attr_dev(nav, "class", "w-1/5 min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
-    			add_location(nav, file, 100, 1, 3201);
+    			add_location(p1, file, 152, 2, 7636);
+    			add_location(ul1, file, 153, 2, 7737);
+    			attr_dev(nav, "class", "min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
+    			add_location(nav, file, 100, 1, 3214);
     			attr_dev(section, "class", "w-1/5 h-full bg-black text-white p-4");
-    			add_location(section, file, 175, 1, 8606);
+    			add_location(section, file, 175, 1, 8660);
     			attr_dev(label, "for", "filepicker");
     			attr_dev(label, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer");
-    			add_location(label, file, 205, 2, 9997);
+    			add_location(label, file, 205, 2, 10053);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/**");
     			attr_dev(input, "id", "filepicker");
     			set_style(input, "display", "none");
-    			add_location(input, file, 213, 2, 10516);
+    			add_location(input, file, 213, 2, 10572);
     			attr_dev(button3, "type", "button");
 
     			attr_dev(button3, "class", button3_class_value = "mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*imageSrc*/ ctx[0]
@@ -2654,10 +2655,10 @@ var indexApp = (function () {
     			: 'opacity-50 cursor-not-allowed'));
 
     			button3.disabled = button3_disabled_value = !/*imageSrc*/ ctx[0];
-    			add_location(button3, file, 214, 2, 10625);
-    			attr_dev(main, "class", "flex flex-col items-center justify-center h-full w-full bg-black text-white font-body");
-    			add_location(main, file, 204, 1, 9893);
-    			attr_dev(div, "class", "flex h-screen max-w-screen");
+    			add_location(button3, file, 214, 2, 10681);
+    			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-full bg-black text-white font-body");
+    			add_location(main, file, 204, 1, 9947);
+    			attr_dev(div, "class", "flex min-h-screen max-w-screen bg-black");
     			add_location(div, file, 99, 0, 3158);
     		},
     		l: function claim(nodes) {
