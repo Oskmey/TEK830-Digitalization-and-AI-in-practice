@@ -24,7 +24,7 @@ build/
 *.log
 
 # ingonre index
-app/static/index/
+app/static/index/**
 
 # ignore images in files folder
 *.png
