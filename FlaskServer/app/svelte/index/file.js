@@ -1,4 +1,4 @@
-// In your file.js
+
 export function fileDrop(event, updateImage) {
   const files = event.target.files;
 

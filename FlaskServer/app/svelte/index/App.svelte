@@ -6,8 +6,13 @@
 	import Check from "../../static/svelte/svg/Check.svelte";
 	import Cross from "../../static/svelte/svg/Cross.svelte";
 
-	let imageSrc = '';
 	let imageFile = null;
+	let isLoading = false;
+
+	$: imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
+	$: isGenerateDisabled = !imageFile || isLoading;
+	$: buttonText = isLoading ? 'Generating...' : 'Generate';
+
 	let dropdowns = {
 		season: false,
 		holiday: false,
@@ -77,12 +82,34 @@
 		});
 	}
 
-    function handleFileDrop(event) {
-        fileDrop(event, (src, file) => {
-            imageSrc = src;
-            imageFile = file; // Save the File object for upload
-        });
+	function handleFileDrop(event) {
+		const file = event.target.files[0];
+		if (file) {
+			imageFile = file;
+		}
 	}
+
+	async function handleGenerate() {
+    	isLoading = true;
+
+		try {
+		const generatedImage = await uploadImage(
+			imageFile
+		);
+
+		imageSrc = generatedImage;
+		} 
+		
+		catch (error) {
+		console.error('Error generating image:', error);
+		errorMessage = error.message || 'An error occurred while generating the image.';
+		} 
+		
+		finally {
+		isLoading = false;
+		}
+  }
+
 
 	// Custom Settings and default values
 	class AdvancedSetting {
@@ -226,8 +253,8 @@
 			{/if}
 		</label>
 		<input type="file" accept="image/**" id="filepicker" style="display: none;" on:change={handleFileDrop} />
-		<button type="button" class="mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {imageSrc ? 'hover:bg-dark-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'}" disabled={!imageSrc} on:click={() => uploadImage(imageFile)}>
-			Generate
+		<button type="button" class="mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out {isGenerateDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-dark-100 cursor-pointer'}" disabled="{isGenerateDisabled}" on:click={() => handleGenerate(imageFile)}>
+			{buttonText}
 		</button>
 	</main>
 </div>

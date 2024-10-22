@@ -18,6 +18,13 @@ def index():
 def generate_image():
     try:
         uploaded_image = Image.open(request.files['image'])
+        prompt = request.form.get('prompt')
+        sampler = request.form.get('sampler')
+        steps = int(request.form.get('steps'))
+        cfg_scale = float(request.form.get('cfg_scale'))
+        denoising_strength = request.form.get('denoising_strength')
+        width = int(request.form.get('width'))
+        height = int(request.form.get('height'))
 
         controlNet0 = ControlNetUnit(
             image=uploaded_image,
@@ -32,12 +39,6 @@ def generate_image():
         resultMask = rembgInt.rembg(input_image=uploaded_image, return_mask=True)
         resultMask.images[0].save("output_maskTest.png")
 
-        prompt = request.form.get('prompt')
-        sampler = request.form.get('sampler')
-        steps = int(request.form.get('steps'))
-        cfg_scale = float(request.form.get('cfg_scale'))
-        denoising_strength = request.form.get('denoising_strength')
-
         result = api.img2img(
             images=[uploaded_image],
             prompt=prompt,
@@ -45,8 +46,8 @@ def generate_image():
             steps=steps,
             cfg_scale=cfg_scale,
             denoising_strength=denoising_strength,
-            width=1024,
-            height=1024,
+            width=width,
+            height=height,
             mask_image=resultMask.images[0],
             mask_blur=0,
             inpainting_mask_invert=1,
