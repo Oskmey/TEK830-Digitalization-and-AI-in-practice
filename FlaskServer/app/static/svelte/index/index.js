@@ -47,6 +47,11 @@ var indexApp = (function () {
         const unsub = store.subscribe(...callbacks);
         return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
     }
+    function get_store_value(store) {
+        let value;
+        subscribe(store, _ => value = _)();
+        return value;
+    }
     function component_subscribe(component, store, callback) {
         component.$$.on_destroy.push(subscribe(store, callback));
     }
@@ -3080,11 +3085,20 @@ var indexApp = (function () {
     		cfg: false
     	};
 
+    	class Option {
+    		constructor(isActive, name, prompt) {
+    			this.isActive = isActive;
+    			this.name = name;
+    			this.prompt = prompt;
+    		}
+    	}
+
     	function toggleDropdown(key) {
     		$$invalidate(2, dropdowns[key] = !dropdowns[key], dropdowns);
     	}
 
     	// All categories
+    	// spring: new Option("spring", "fresh, new, cool", false)
     	let seasons = writable({
     		spring: false,
     		summer: false,
@@ -3176,11 +3190,13 @@ var indexApp = (function () {
     		uploadImage,
     		debug,
     		writable,
+    		get: get_store_value,
     		Check,
     		Cross,
     		imageSrc,
     		imageFile,
     		dropdowns,
+    		Option,
     		toggleDropdown,
     		seasons,
     		holiday,

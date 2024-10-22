@@ -2,7 +2,7 @@
 	import { fileDrop } from './file.js';
 	import { uploadImage } from './flask.js';
     import { debug } from "svelte/internal";
-	import { writable } from 'svelte/store';
+	import { writable, get } from 'svelte/store';
 	import Check from "../../static/svelte/svg/Check.svelte";
 	import Cross from "../../static/svelte/svg/Cross.svelte";
 
@@ -15,11 +15,21 @@
 		cfg: false
 	};
 
+	class Option {
+		constructor(isActive, name, prompt) {
+			this.isActive = isActive;
+			this.name = name;
+			this.prompt = prompt
+		}
+	}
+
+	
 	function toggleDropdown(key) {
 		dropdowns[key] = !dropdowns[key];
 	};
 
 	// All categories
+	// spring: new Option("spring", "fresh, new, cool", false)
 	let seasons = writable({
 		spring: false,
 		summer: false,
@@ -39,6 +49,7 @@
 		trash: false
 	});
 
+	
     // Function to set one key to true, and others to false
     function setTrue(store, key) {
         store.update(map => {
