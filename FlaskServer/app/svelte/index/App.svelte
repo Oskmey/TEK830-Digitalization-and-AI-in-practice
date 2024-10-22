@@ -8,15 +8,8 @@
 
 	let imageSrc = '';
 	let imageFile = null;
-	let dropdowns = {
-		season: false,
-		holiday: false,
-		style: false
-	};
-
 
 	// Categories
-
 	class CategoryType {
 		constructor(name) {
 			this.name = name; 
@@ -90,52 +83,7 @@
 		});
 	}
 
-	let seasons = writable({
-		spring: false,
-		summer: false,
-		fall: false,
-		winter: false
-	});
-
-	let holiday = writable({
-		easter: false,
-		thanksgiving: false,
-		christmas: false
-	});
-
-	let style = writable({
-		modern: false,
-		old: false,
-		trash: false
-	});
-
-    // Function to set one key to true, and others to false
-    function setTrue(store, key) {
-        store.update(map => {
-            // If the current key is already true, set all values to false
-            if (map[key] === true) {
-                for (let k in map) {
-                    map[k] = false;
-                }
-                return map;  // Return updated map with all false
-            }
-
-            // Otherwise, set all to false, and the specified key to true
-            for (let k in map) {
-                map[k] = false;
-            }
-            map[key] = true;
-            return map;  // Return updated map
-        });
-    }
-	
-	// Set the specified key to false
-	function setFalse(store, key) {
-		store.update(map => {
-			return { ...map, [key]: false }; 
-		});
-	}
-
+	// Image
     function handleFileDrop(event) {
         fileDrop(event, (src, file) => {
             imageSrc = src;
@@ -220,31 +168,13 @@
 		</ul>
 	</nav>
 
-	<!-- Active filters -->
+	<!-- Active filters TODO move -->
 	<section class="w-1/5 h-full bg-black text-white p-4">
-		{#each Object.keys($seasons) as season}
-			{#if $seasons[season]}
+		{#each $categories as category}
+			{#if category.isActive}
 				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
-					{season.charAt(0).toUpperCase() + season.slice(1)} <!-- Capitalizes the season name -->
-					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(seasons, season)}><Cross/></button>
-				</div>
-			{/if}
-		{/each}
-
-		{#each Object.keys($holiday) as holi}
-			{#if $holiday[holi]}
-				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
-					{holi.charAt(0).toUpperCase() + holi.slice(1)} <!-- Capitalizes the holi name -->
-					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(holiday, holi)}><Cross/></button>
-				</div>
-			{/if}
-		{/each}
-
-		{#each Object.keys($style) as key}
-			{#if $style[key]}
-				<div class="flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded">
-					{key.charAt(0).toUpperCase() + key.slice(1)} <!-- Capitalizes the style name -->
-					<button class="rounded hover:bg-dark-200" on:click={() => setFalse(style, key)}><Cross/></button>
+					{category.name} 
+					<button class="rounded hover:bg-dark-200" on:click={() => deactivateCategory(category)}><Cross/></button>
 				</div>
 			{/if}
 		{/each}
