@@ -19,7 +19,7 @@ export async function uploadImage(image, promptList, sampler = "Euler a", steps=
             break;
 
             case "fall":
-            resultPrompt.push("cozy, autumn, low lighting, brown hue.");
+            resultPrompt.push("product image, cozy, autumn, low lighting, brown hue, warm, soft, dim, golden, rustic, peaceful, inviting, intimate, quiet, serene, earthy, amber, glowing, tranquil, comforting, gentle, nostalgic.");
             break;
           // Add other cases if necessary
           default:
