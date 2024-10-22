@@ -25,3 +25,6 @@ build/
 
 # ingonre index
 app/static/index/
+
+# ignore images in files folder
+*.png
