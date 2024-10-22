@@ -1,4 +1,4 @@
-export function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.75) {
+export function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.7) {
     const formData = new FormData();
     const promptListAdj = new Array();
     const resultPrompt = [];
@@ -20,7 +20,7 @@ export function uploadImage(image, promptList, sampler = "Euler a", steps = 20, 
             break;
 
             case "fall":
-            resultPrompt.push("cozy, autumn, low lighting, brown hue.");
+            resultPrompt.push("product image, cozy, autumn, low lighting, brown hue, warm, soft, dim, golden, rustic, peaceful, inviting, intimate, quiet, serene, earthy, amber, glowing, tranquil, comforting, gentle, nostalgic.");
             break;
           // Add other cases if necessary
           default:

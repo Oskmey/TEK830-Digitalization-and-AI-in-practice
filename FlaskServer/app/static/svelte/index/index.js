@@ -483,7 +483,7 @@ var indexApp = (function () {
       }
     }
 
-    function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.75) {
+    function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.7) {
         const formData = new FormData();
         const promptListAdj = new Array();
         const resultPrompt = [];
@@ -505,7 +505,7 @@ var indexApp = (function () {
                 break;
 
                 case "fall":
-                resultPrompt.push("cozy, autumn, low lighting, brown hue.");
+                resultPrompt.push("product image, cozy, autumn, low lighting, brown hue, warm, soft, dim, golden, rustic, peaceful, inviting, intimate, quiet, serene, earthy, amber, glowing, tranquil, comforting, gentle, nostalgic.");
                 break;
             }
           });

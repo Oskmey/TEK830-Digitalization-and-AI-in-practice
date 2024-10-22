@@ -52,8 +52,22 @@ def generate_image():
             inpainting_mask_invert=1,
             inpainting_fill=1,
             controlnet_units=[controlNet0],
-            alwayson_scripts={"args": [{"Soft inpainting": True}]}
-        )
+            alwayson_scripts={
+                    "soft inpainting": {
+                        "args": [
+                            {
+                                "Soft inpainting": True,
+                                "Schedule bias": 1,
+                                "Preservation strength": 0.5,
+                                "Transition contrast boost": 4,
+                                "Mask influence": 0,
+                                "Difference threshold": 0.5,
+                                "Difference contrast": 2,
+                            },
+                        ]
+                    }
+                })
+        
 
         result.images[0].save("output_image.png")
 
