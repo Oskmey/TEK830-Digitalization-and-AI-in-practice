@@ -19,7 +19,68 @@
 		dropdowns[key] = !dropdowns[key];
 	};
 
-	// All categories
+	// Categories
+
+	class Category {
+		constructor(name, type) {
+			this.name = name;
+			this.type = type;
+			this.isActive = false;
+		}
+
+		activate() {
+			this.isActive = true;
+		}
+
+		deactivate() {
+			this.isActive = false;
+		}
+  	}
+
+	let categoriesList = [
+		new Categories('spring', 'season'),
+		new Categories('summer', 'season'),
+		new Categories('fall', 'season'),
+		new Categories('winter', 'season'),
+		new Categories('easter', 'holiday'),
+		new Categories('thanksgiving', 'holiday'),
+		new Categories('christmas', 'holiday'),
+		new Categories('modern', 'style'),
+		new Categories('old', 'style'),
+		new Categories('trash', 'style'),
+	];
+
+	// A writable store for the categories
+	let categoriesStore = writable(categoriesList);
+
+	// Activate one category and deactivate all the other of the same type. Lite stökig funktion men what the hell, den funkar
+	function activateCategory(selectedCategory) {
+		categoriesStore.update((categories) => {
+			return categories.map((category) => {
+				if (category.type === selectedCategory.type) {
+					if (category === selectedCategory) {
+						category.activate();
+					} else {
+						category.deactivate();
+					}
+				}
+				return category;
+			});
+		});
+	}
+
+	// Only deactivate the selected category. Same, lite stökig
+	function deactivateCategory(selectedCategory) {
+		categoriesStore.update((categories) => {
+			return categories.map((category) => {
+				if (category === selectedCategory) {
+					category.deactivate(); 
+				}
+				return category;
+			});
+		});
+	}
+
 	let seasons = writable({
 		spring: false,
 		summer: false,
