@@ -102,9 +102,7 @@
 		
 		catch (error) {
 		console.error('Error generating image:', error);
-		errorMessage = error.message || 'An error occurred while generating the image.';
 		} 
-		
 		finally {
 		isLoading = false;
 		}

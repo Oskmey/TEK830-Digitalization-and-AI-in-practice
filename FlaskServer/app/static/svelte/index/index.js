@@ -501,7 +501,6 @@ var indexApp = (function () {
         $inject_state() { }
     }
 
-    // In your file.js
     function fileDrop(event, updateImage) {
       const files = event.target.files;
 
@@ -520,11 +519,10 @@ var indexApp = (function () {
       }
     }
 
-    function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.7) {
+    async function uploadImage(image, promptList, sampler = "Euler a", steps=20, cfg_scale=7.0, denoising_strength=0.7, width=1024, height=1024) {
         const formData = new FormData();
         const promptListAdj = new Array();
         const resultPrompt = [];
-        formData.append('image', image);
         
         for (let category of promptList) {
             for (let [key, value] of Object.entries(category)) {
@@ -547,14 +545,18 @@ var indexApp = (function () {
             }
           });
         
+
+        formData.append('image', image);
         formData.append('prompt', resultPrompt);
         formData.append('sampler', sampler);
         formData.append('steps', steps);
         formData.append('cfg_scale', cfg_scale);
         formData.append('denoising_strength', denoising_strength);
+        formData.append('width', width);
+        formData.append('height', height);
        
 
-        fetch('/upload', {
+        let response = await fetch('/upload', {
             method: 'POST',
             body: formData
         });
@@ -771,8 +773,34 @@ var indexApp = (function () {
     const { Object: Object_1, console: console_1 } = globals;
     const file = "app/svelte/index/App.svelte";
 
-    // (196:4) {#if dropdowns.season}
-    function create_if_block_10(ctx) {
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[40] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[43] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[46] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[49] = list[i];
+    	child_ctx[50] = list;
+    	child_ctx[51] = i;
+    	return child_ctx;
+    }
+
+    // (149:4) {#if dropdowns.season}
+    function create_if_block_13(ctx) {
     	let ul;
     	let li0;
     	let button0;
@@ -820,22 +848,22 @@ var indexApp = (function () {
     			t6 = text("Winter");
     			if (if_block3) if_block3.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 197, 23, 6247);
+    			add_location(button0, file, 150, 23, 4510);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 197, 6, 6230);
+    			add_location(li0, file, 150, 6, 4493);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 198, 23, 6490);
+    			add_location(button1, file, 151, 23, 4752);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 198, 6, 6473);
+    			add_location(li1, file, 151, 6, 4735);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 199, 23, 6733);
+    			add_location(button2, file, 152, 23, 4994);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 199, 6, 6716);
+    			add_location(li2, file, 152, 6, 4977);
     			attr_dev(button3, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button3, file, 200, 23, 6970);
+    			add_location(button3, file, 153, 23, 5230);
     			attr_dev(li3, "class", "ml-8");
-    			add_location(li3, file, 200, 6, 6953);
-    			add_location(ul, file, 196, 5, 6218);
+    			add_location(li3, file, 153, 6, 5213);
+    			add_location(ul, file, 149, 5, 4482);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -986,15 +1014,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_13.name,
     		type: "if",
-    		source: "(196:4) {#if dropdowns.season}",
+    		source: "(149:4) {#if dropdowns.season}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (198:193) {#if $seasons.spring}
-    function create_if_block_14(ctx) {
+    // (151:193) {#if $seasons.spring}
+    function create_if_block_17(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1025,15 +1053,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_17.name,
     		type: "if",
-    		source: "(198:193) {#if $seasons.spring}",
+    		source: "(151:193) {#if $seasons.spring}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (199:193) {#if $seasons.summer}
-    function create_if_block_13(ctx) {
+    // (152:193) {#if $seasons.summer}
+    function create_if_block_16(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1064,15 +1092,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_16.name,
     		type: "if",
-    		source: "(199:193) {#if $seasons.summer}",
+    		source: "(152:193) {#if $seasons.summer}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (200:189) {#if $seasons.fall}
-    function create_if_block_12(ctx) {
+    // (153:189) {#if $seasons.fall}
+    function create_if_block_15(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1103,15 +1131,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_15.name,
     		type: "if",
-    		source: "(200:189) {#if $seasons.fall}",
+    		source: "(153:189) {#if $seasons.fall}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (201:193) {#if $seasons.winter}
-    function create_if_block_11(ctx) {
+    // (154:193) {#if $seasons.winter}
+    function create_if_block_14(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1142,15 +1170,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_14.name,
     		type: "if",
-    		source: "(201:193) {#if $seasons.winter}",
+    		source: "(154:193) {#if $seasons.winter}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (212:4) {#if dropdowns.holiday}
-    function create_if_block_6(ctx) {
+    // (165:4) {#if dropdowns.holiday}
+    function create_if_block_9(ctx) {
     	let ul;
     	let li0;
     	let button0;
@@ -1188,18 +1216,18 @@ var indexApp = (function () {
     			t4 = text("Christmas");
     			if (if_block2) if_block2.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 213, 23, 7789);
+    			add_location(button0, file, 166, 23, 6036);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 213, 6, 7772);
+    			add_location(li0, file, 166, 6, 6019);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 214, 23, 8032);
+    			add_location(button1, file, 167, 23, 6278);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 214, 6, 8015);
+    			add_location(li1, file, 167, 6, 6261);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 215, 23, 8293);
+    			add_location(button2, file, 168, 23, 6538);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 215, 6, 8276);
-    			add_location(ul, file, 212, 5, 7760);
+    			add_location(li2, file, 168, 6, 6521);
+    			add_location(ul, file, 165, 5, 6008);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1320,15 +1348,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(212:4) {#if dropdowns.holiday}",
+    		source: "(165:4) {#if dropdowns.holiday}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (214:193) {#if $holiday.easter}
-    function create_if_block_9(ctx) {
+    // (167:193) {#if $holiday.easter}
+    function create_if_block_12(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1359,15 +1387,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_12.name,
     		type: "if",
-    		source: "(214:193) {#if $holiday.easter}",
+    		source: "(167:193) {#if $holiday.easter}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (215:205) {#if $holiday.thanksgiving}
-    function create_if_block_8(ctx) {
+    // (168:205) {#if $holiday.thanksgiving}
+    function create_if_block_11(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1398,15 +1426,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_11.name,
     		type: "if",
-    		source: "(215:205) {#if $holiday.thanksgiving}",
+    		source: "(168:205) {#if $holiday.thanksgiving}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (216:199) {#if $holiday.christmas}
-    function create_if_block_7(ctx) {
+    // (169:199) {#if $holiday.christmas}
+    function create_if_block_10(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1437,15 +1465,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(216:199) {#if $holiday.christmas}",
+    		source: "(169:199) {#if $holiday.christmas}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (227:4) {#if dropdowns.style}
-    function create_if_block_2(ctx) {
+    // (180:4) {#if dropdowns.style}
+    function create_if_block_5(ctx) {
     	let ul;
     	let li0;
     	let button0;
@@ -1483,18 +1511,18 @@ var indexApp = (function () {
     			t4 = text("Trash");
     			if (if_block2) if_block2.c();
     			attr_dev(button0, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 228, 23, 9114);
+    			add_location(button0, file, 181, 23, 7346);
     			attr_dev(li0, "class", "ml-8");
-    			add_location(li0, file, 228, 6, 9097);
+    			add_location(li0, file, 181, 6, 7329);
     			attr_dev(button1, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 229, 23, 9353);
+    			add_location(button1, file, 182, 23, 7584);
     			attr_dev(li1, "class", "ml-8");
-    			add_location(li1, file, 229, 6, 9336);
+    			add_location(li1, file, 182, 6, 7567);
     			attr_dev(button2, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 230, 23, 9583);
+    			add_location(button2, file, 183, 23, 7813);
     			attr_dev(li2, "class", "ml-8");
-    			add_location(li2, file, 230, 6, 9566);
-    			add_location(ul, file, 227, 5, 9085);
+    			add_location(li2, file, 183, 6, 7796);
+    			add_location(ul, file, 180, 5, 7318);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1615,15 +1643,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(227:4) {#if dropdowns.style}",
+    		source: "(180:4) {#if dropdowns.style}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (229:191) {#if $style.modern}
-    function create_if_block_5(ctx) {
+    // (182:191) {#if $style.modern}
+    function create_if_block_8(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1654,15 +1682,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(229:191) {#if $style.modern}",
+    		source: "(182:191) {#if $style.modern}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (230:185) {#if $style.old}
-    function create_if_block_4(ctx) {
+    // (183:185) {#if $style.old}
+    function create_if_block_7(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1693,15 +1721,15 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_7.name,
     		type: "if",
-    		source: "(230:185) {#if $style.old}",
+    		source: "(183:185) {#if $style.old}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (231:189) {#if $style.trash}
-    function create_if_block_3(ctx) {
+    // (184:189) {#if $style.trash}
+    function create_if_block_6(ctx) {
     	let check;
     	let current;
     	check = new Check({ $$inline: true });
@@ -1730,27 +1758,531 @@ var indexApp = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_3.name,
+    		id: create_if_block_6.name,
     		type: "if",
-    		source: "(231:189) {#if $style.trash}",
+    		source: "(184:189) {#if $style.trash}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (246:4) {#if dropdowns.cfg}
-    function create_if_block_1(ctx) {
-    	let p;
+    // (201:6) {#if setting.showTooltip}
+    function create_if_block_4(ctx) {
+    	let div;
+    	let t_value = /*setting*/ ctx[49].descrition + "";
+    	let t;
 
     	const block = {
     		c: function create() {
-    			p = element("p");
-    			p.textContent = "Nothing here yet.";
-    			add_location(p, file, 247, 6, 10480);
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "class", "absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10");
+    			add_location(div, file, 201, 7, 8644);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, p, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*advancedSettings*/ 4 && t_value !== (t_value = /*setting*/ ctx[49].descrition + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_4.name,
+    		type: "if",
+    		source: "(201:6) {#if setting.showTooltip}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (194:3) {#each advancedSettings as setting}
+    function create_each_block_3(ctx) {
+    	let li;
+    	let div;
+    	let p0;
+    	let t0_value = /*setting*/ ctx[49].name + "";
+    	let t0;
+    	let t1;
+    	let t2;
+    	let input;
+    	let input_min_value;
+    	let input_max_value;
+    	let input_step_value;
+    	let t3;
+    	let p1;
+    	let t4_value = /*setting*/ ctx[49].value + "";
+    	let t4;
+    	let t5;
+    	let mounted;
+    	let dispose;
+    	let if_block = /*setting*/ ctx[49].showTooltip && create_if_block_4(ctx);
+
+    	function mouseenter_handler() {
+    		return /*mouseenter_handler*/ ctx[29](/*setting*/ ctx[49], /*each_value_3*/ ctx[50], /*setting_index*/ ctx[51]);
+    	}
+
+    	function mouseleave_handler() {
+    		return /*mouseleave_handler*/ ctx[30](/*setting*/ ctx[49], /*each_value_3*/ ctx[50], /*setting_index*/ ctx[51]);
+    	}
+
+    	function input_change_input_handler() {
+    		/*input_change_input_handler*/ ctx[31].call(input, /*each_value_3*/ ctx[50], /*setting_index*/ ctx[51]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			div = element("div");
+    			p0 = element("p");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			if (if_block) if_block.c();
+    			t2 = space();
+    			input = element("input");
+    			t3 = space();
+    			p1 = element("p");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			attr_dev(p0, "class", "w-[7ch] text-left");
+    			add_location(p0, file, 198, 6, 8550);
+    			attr_dev(div, "class", "relative inline-block hover:cursor-pointer");
+    			add_location(div, file, 195, 5, 8374);
+    			attr_dev(input, "class", "hover:cursor-pointer");
+    			attr_dev(input, "type", "range");
+    			attr_dev(input, "min", input_min_value = /*setting*/ ctx[49].min);
+    			attr_dev(input, "max", input_max_value = /*setting*/ ctx[49].max);
+    			attr_dev(input, "step", input_step_value = /*setting*/ ctx[49].step);
+    			add_location(input, file, 206, 5, 8890);
+    			attr_dev(p1, "class", "text-right w-[4ch]");
+    			add_location(p1, file, 207, 5, 9036);
+    			attr_dev(li, "class", "flex justify-between items-center w-full p-2 gap-2 rounded");
+    			add_location(li, file, 194, 4, 8297);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, div);
+    			append_dev(div, p0);
+    			append_dev(p0, t0);
+    			append_dev(div, t1);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(li, t2);
+    			append_dev(li, input);
+    			set_input_value(input, /*setting*/ ctx[49].value);
+    			append_dev(li, t3);
+    			append_dev(li, p1);
+    			append_dev(p1, t4);
+    			append_dev(li, t5);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(div, "mouseenter", mouseenter_handler, false, false, false, false),
+    					listen_dev(div, "mouseleave", mouseleave_handler, false, false, false, false),
+    					listen_dev(input, "change", input_change_input_handler),
+    					listen_dev(input, "input", input_change_input_handler)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty[0] & /*advancedSettings*/ 4 && t0_value !== (t0_value = /*setting*/ ctx[49].name + "")) set_data_dev(t0, t0_value);
+
+    			if (/*setting*/ ctx[49].showTooltip) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_4(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && input_min_value !== (input_min_value = /*setting*/ ctx[49].min)) {
+    				attr_dev(input, "min", input_min_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && input_max_value !== (input_max_value = /*setting*/ ctx[49].max)) {
+    				attr_dev(input, "max", input_max_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && input_step_value !== (input_step_value = /*setting*/ ctx[49].step)) {
+    				attr_dev(input, "step", input_step_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4) {
+    				set_input_value(input, /*setting*/ ctx[49].value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && t4_value !== (t4_value = /*setting*/ ctx[49].value + "")) set_data_dev(t4, t4_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_3.name,
+    		type: "each",
+    		source: "(194:3) {#each advancedSettings as setting}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (217:3) {#if $seasons[season]}
+    function create_if_block_3(ctx) {
+    	let div;
+    	let t0_value = /*season*/ ctx[46].charAt(0).toUpperCase() + /*season*/ ctx[46].slice(1) + "";
+    	let t0;
+    	let t1;
+    	let button;
+    	let cross;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	cross = new Cross({ $$inline: true });
+
+    	function click_handler_13() {
+    		return /*click_handler_13*/ ctx[32](/*season*/ ctx[46]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			button = element("button");
+    			create_component(cross.$$.fragment);
+    			attr_dev(button, "class", "rounded hover:bg-dark-200");
+    			add_location(button, file, 219, 5, 9479);
+    			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
+    			add_location(div, file, 217, 4, 9277);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			append_dev(div, button);
+    			mount_component(cross, button, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", click_handler_13, false, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty[0] & /*$seasons*/ 64) && t0_value !== (t0_value = /*season*/ ctx[46].charAt(0).toUpperCase() + /*season*/ ctx[46].slice(1) + "")) set_data_dev(t0, t0_value);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(cross.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(cross.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(cross);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(217:3) {#if $seasons[season]}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (216:2) {#each Object.keys($seasons) as season}
+    function create_each_block_2(ctx) {
+    	let if_block_anchor;
+    	let current;
+    	let if_block = /*$seasons*/ ctx[6][/*season*/ ctx[46]] && create_if_block_3(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*$seasons*/ ctx[6][/*season*/ ctx[46]]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty[0] & /*$seasons*/ 64) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_3(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(216:2) {#each Object.keys($seasons) as season}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (226:3) {#if $holiday[holi]}
+    function create_if_block_2(ctx) {
+    	let div;
+    	let t0_value = /*holi*/ ctx[43].charAt(0).toUpperCase() + /*holi*/ ctx[43].slice(1) + "";
+    	let t0;
+    	let t1;
+    	let button;
+    	let cross;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	cross = new Cross({ $$inline: true });
+
+    	function click_handler_14() {
+    		return /*click_handler_14*/ ctx[33](/*holi*/ ctx[43]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			button = element("button");
+    			create_component(cross.$$.fragment);
+    			attr_dev(button, "class", "rounded hover:bg-dark-200");
+    			add_location(button, file, 228, 5, 9877);
+    			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
+    			add_location(div, file, 226, 4, 9681);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			append_dev(div, button);
+    			mount_component(cross, button, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", click_handler_14, false, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty[0] & /*$holiday*/ 128) && t0_value !== (t0_value = /*holi*/ ctx[43].charAt(0).toUpperCase() + /*holi*/ ctx[43].slice(1) + "")) set_data_dev(t0, t0_value);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(cross.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(cross.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(cross);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(226:3) {#if $holiday[holi]}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (225:2) {#each Object.keys($holiday) as holi}
+    function create_each_block_1(ctx) {
+    	let if_block_anchor;
+    	let current;
+    	let if_block = /*$holiday*/ ctx[7][/*holi*/ ctx[43]] && create_if_block_2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*$holiday*/ ctx[7][/*holi*/ ctx[43]]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty[0] & /*$holiday*/ 128) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_2(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(225:2) {#each Object.keys($holiday) as holi}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (235:3) {#if $style[key]}
+    function create_if_block_1(ctx) {
+    	let div;
+    	let t0_value = /*key*/ ctx[40].charAt(0).toUpperCase() + /*key*/ ctx[40].slice(1) + "";
+    	let t0;
+    	let t1;
+    	let button;
+    	let cross;
+    	let t2;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	cross = new Cross({ $$inline: true });
+
+    	function click_handler_15() {
+    		return /*click_handler_15*/ ctx[34](/*key*/ ctx[40]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			button = element("button");
+    			create_component(cross.$$.fragment);
+    			t2 = space();
+    			attr_dev(button, "class", "rounded hover:bg-dark-200");
+    			add_location(button, file, 237, 5, 10266);
+    			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
+    			add_location(div, file, 235, 4, 10071);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			append_dev(div, button);
+    			mount_component(cross, button, null);
+    			append_dev(div, t2);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", click_handler_15, false, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty[0] & /*$style*/ 256) && t0_value !== (t0_value = /*key*/ ctx[40].charAt(0).toUpperCase() + /*key*/ ctx[40].slice(1) + "")) set_data_dev(t0, t0_value);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(cross.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(cross.$$.fragment, local);
+    			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -1764,14 +2296,80 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(246:4) {#if dropdowns.cfg}",
+    		source: "(235:3) {#if $style[key]}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (259:3) {:else}
+    // (234:2) {#each Object.keys($style) as key}
+    function create_each_block(ctx) {
+    	let if_block_anchor;
+    	let current;
+    	let if_block = /*$style*/ ctx[8][/*key*/ ctx[40]] && create_if_block_1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*$style*/ ctx[8][/*key*/ ctx[40]]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty[0] & /*$style*/ 256) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_1(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(234:2) {#each Object.keys($style) as key}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (249:3) {:else}
     function create_else_block(ctx) {
     	let img;
     	let img_src_value;
@@ -1784,7 +2382,7 @@ var indexApp = (function () {
     			attr_dev(img, "id", "output");
     			set_style(img, "display", "block");
     			attr_dev(img, "alt", "Uploaded_image");
-    			add_location(img, file, 259, 4, 11028);
+    			add_location(img, file, 249, 4, 10884);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -1803,14 +2401,14 @@ var indexApp = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(259:3) {:else}",
+    		source: "(249:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (256:3) {#if !imageSrc}
+    // (246:3) {#if !imageSrc}
     function create_if_block(ctx) {
     	let h1;
     	let t1;
@@ -1824,9 +2422,9 @@ var indexApp = (function () {
     			p = element("p");
     			p.textContent = "The image should contain your product with a white background";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 256, 4, 10821);
+    			add_location(h1, file, 246, 4, 10680);
     			attr_dev(p, "class", "text-xs");
-    			add_location(p, file, 257, 4, 10926);
+    			add_location(p, file, 247, 4, 10784);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -1845,7 +2443,7 @@ var indexApp = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(256:3) {#if !imageSrc}",
+    		source: "(246:3) {#if !imageSrc}",
     		ctx
     	});
 
@@ -2028,9 +2626,9 @@ var indexApp = (function () {
     			button3 = element("button");
     			t21 = text(/*buttonText*/ ctx[4]);
     			attr_dev(h1, "class", "p-2 text-5xl font-title tracking-widest font-bold");
-    			add_location(h1, file, 187, 2, 5593);
+    			add_location(h1, file, 140, 2, 3863);
     			attr_dev(path0, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path0, file, 193, 211, 6099);
+    			add_location(path0, file, 146, 211, 4366);
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "height", "16px");
     			attr_dev(svg0, "viewBox", "0 -960 960 960");
@@ -2038,12 +2636,12 @@ var indexApp = (function () {
     			attr_dev(svg0, "fill", "#ffffff");
     			set_style(svg0, "transform", "rotate(" + (/*dropdowns*/ ctx[1].season ? '90deg' : '0deg') + ")");
     			set_style(svg0, "transition", "transform 0.3s ease");
-    			add_location(svg0, file, 193, 5, 5893);
+    			add_location(svg0, file, 146, 5, 4160);
     			attr_dev(button0, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button0, file, 191, 4, 5721);
-    			add_location(li0, file, 190, 3, 5711);
+    			add_location(button0, file, 144, 4, 3990);
+    			add_location(li0, file, 143, 3, 3981);
     			attr_dev(path1, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path1, file, 209, 212, 7640);
+    			add_location(path1, file, 162, 212, 5891);
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "height", "16px");
     			attr_dev(svg1, "viewBox", "0 -960 960 960");
@@ -2051,12 +2649,12 @@ var indexApp = (function () {
     			attr_dev(svg1, "fill", "#ffffff");
     			set_style(svg1, "transform", "rotate(" + (/*dropdowns*/ ctx[1].holiday ? '90deg' : '0deg') + ")");
     			set_style(svg1, "transition", "transform 0.3s ease");
-    			add_location(svg1, file, 209, 5, 7433);
+    			add_location(svg1, file, 162, 5, 5684);
     			attr_dev(button1, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button1, file, 207, 4, 7259);
-    			add_location(li1, file, 206, 3, 7249);
+    			add_location(button1, file, 160, 4, 5512);
+    			add_location(li1, file, 159, 3, 5503);
     			attr_dev(path2, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path2, file, 224, 210, 8967);
+    			add_location(path2, file, 177, 210, 7203);
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "height", "16px");
     			attr_dev(svg2, "viewBox", "0 -960 960 960");
@@ -2064,50 +2662,41 @@ var indexApp = (function () {
     			attr_dev(svg2, "fill", "#ffffff");
     			set_style(svg2, "transform", "rotate(" + (/*dropdowns*/ ctx[1].style ? '90deg' : '0deg') + ")");
     			set_style(svg2, "transition", "transform 0.3s ease");
-    			add_location(svg2, file, 224, 5, 8762);
+    			add_location(svg2, file, 177, 5, 6998);
     			attr_dev(button2, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button2, file, 222, 4, 8592);
-    			add_location(li2, file, 221, 3, 8582);
+    			add_location(button2, file, 175, 4, 6830);
+    			add_location(li2, file, 174, 3, 6821);
     			attr_dev(ul0, "class", "mt-8");
-    			add_location(ul0, file, 188, 2, 5669);
-    			attr_dev(p, "class", "text-left p-2 mt-8");
-    			add_location(p, file, 237, 2, 9870);
-    			attr_dev(path3, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path3, file, 243, 208, 10328);
-    			attr_dev(svg3, "xmlns", "http://www.w3.org/2000/svg");
-    			attr_dev(svg3, "height", "16px");
-    			attr_dev(svg3, "viewBox", "0 -960 960 960");
-    			attr_dev(svg3, "width", "16px");
-    			attr_dev(svg3, "fill", "#ffffff");
-    			set_style(svg3, "transform", "rotate(" + (/*dropdowns*/ ctx[2].cfg ? '90deg' : '0deg') + ")");
-    			set_style(svg3, "transition", "transform 0.3s ease");
-    			add_location(svg3, file, 243, 5, 10125);
-    			attr_dev(button3, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button3, file, 241, 4, 9959);
-    			add_location(li3, file, 240, 3, 9949);
-    			add_location(ul1, file, 238, 2, 9923);
-    			attr_dev(nav, "class", "w-1/5 min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
-    			add_location(nav, file, 186, 1, 5502);
+    			add_location(ul0, file, 141, 2, 3941);
+    			attr_dev(p0, "class", "text-left p-2 mt-8");
+    			add_location(p0, file, 190, 2, 8095);
+    			attr_dev(p1, "class", "text-left px-2 mb-4 text-xs text-gray-500");
+    			add_location(p1, file, 191, 2, 8149);
+    			add_location(ul1, file, 192, 2, 8249);
+    			attr_dev(nav, "class", "min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
+    			add_location(nav, file, 139, 1, 3779);
+    			attr_dev(section, "class", "w-1/5 h-full bg-black text-white p-4");
+    			add_location(section, file, 214, 1, 9150);
     			attr_dev(label, "for", "filepicker");
     			attr_dev(label, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer");
-    			add_location(label, file, 254, 2, 10652);
+    			add_location(label, file, 244, 2, 10513);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/**");
     			attr_dev(input, "id", "filepicker");
     			set_style(input, "display", "none");
-    			add_location(input, file, 262, 2, 11171);
-    			attr_dev(button4, "type", "button");
+    			add_location(input, file, 252, 2, 11024);
+    			attr_dev(button3, "type", "button");
 
     			attr_dev(button3, "class", button3_class_value = "mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*isGenerateDisabled*/ ctx[5]
     			? 'opacity-50 cursor-not-allowed'
     			: 'hover:bg-dark-100 cursor-pointer'));
 
-    			button4.disabled = button4_disabled_value = !/*imageSrc*/ ctx[0];
-    			add_location(button4, file, 263, 2, 11280);
-    			attr_dev(main, "class", "flex flex-col items-center justify-center h-full w-full bg-black text-white font-body");
-    			add_location(main, file, 253, 1, 10548);
-    			attr_dev(div, "class", "flex h-screen max-w-screen");
-    			add_location(div, file, 185, 0, 5459);
+    			button3.disabled = /*isGenerateDisabled*/ ctx[5];
+    			add_location(button3, file, 253, 2, 11132);
+    			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-full bg-black text-white font-body");
+    			add_location(main, file, 243, 1, 10408);
+    			attr_dev(div, "class", "flex min-h-screen max-w-screen bg-black");
+    			add_location(div, file, 138, 0, 3724);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2585,7 +3174,6 @@ var indexApp = (function () {
     			$$invalidate(3, imageSrc = generatedImage);
     		} catch(error) {
     			console.error('Error generating image:', error);
-    			errorMessage = error.message || 'An error occurred while generating the image.';
     		} finally {
     			$$invalidate(15, isLoading = false);
     		}
