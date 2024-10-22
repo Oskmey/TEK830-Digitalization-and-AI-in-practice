@@ -11,73 +11,95 @@
 	let dropdowns = {
 		season: false,
 		holiday: false,
-		style: false,
-		cfg: false
+		style: false
 	};
 
-	function toggleDropdown(key) {
-		dropdowns[key] = !dropdowns[key];
-	};
 
 	// Categories
 
+	class CategoryType {
+		constructor(name) {
+			this.name = name; 
+			this.isOpen = false;
+		}
+	}
+
 	class Category {
 		constructor(name, type) {
-			this.name = name;
-			this.type = type;
+			this.name = name;  
+			this.type = type; 
 			this.isActive = false;
 		}
+	}
 
-		activate() {
-			this.isActive = true;
-		}
+	const categoryTypes = writable([
+		new CategoryType('Season'),
+		new CategoryType('Holiday'),
+		new CategoryType('Style')
+	]);
 
-		deactivate() {
-			this.isActive = false;
-		}
-  	}
+	const categories = writable([
+		new Category('Spring', Season),
+		new Category('Summer', Season),
+		new Category('Fall', Season),
+		new Category('Winter', Season),
+		new Category('Easter', Holiday),
+		new Category('Thanksgiving', Holiday),
+		new Category('Christmas', Holiday),
+		new Category('Mordern', Style),
+		new Category('Old', Style),
+		new Category('Trash', Style)
+	]);
 
-	let categoriesList = [
-		new Categories('spring', 'season'),
-		new Categories('summer', 'season'),
-		new Categories('fall', 'season'),
-		new Categories('winter', 'season'),
-		new Categories('easter', 'holiday'),
-		new Categories('thanksgiving', 'holiday'),
-		new Categories('christmas', 'holiday'),
-		new Categories('modern', 'style'),
-		new Categories('old', 'style'),
-		new Categories('trash', 'style'),
-	];
-
-	// A writable store for the categories
-	let categoriesStore = writable(categoriesList);
+	function toggleDropdown(name) {
+		categoriesStore.update(dropdowns => {
+			for (const dropdown in dropdowns) {
+				if (dropdown.name === name) {
+					dropdown.isOpen = !dropdown.isOpen
+				}
+			}
+			return dropdowns;
+		});
+	}
 
 	// Activate one category and deactivate all the other of the same type. Lite stökig funktion men what the hell, den funkar
-	function activateCategory(selectedCategory) {
-		categoriesStore.update((categories) => {
-			return categories.map((category) => {
-				if (category.type === selectedCategory.type) {
-					if (category === selectedCategory) {
-						category.activate();
-					} else {
-						category.deactivate();
-					}
+	function toggleCategory(categoryName) {
+		categories.update(cats => {
+			// Find the selected category
+			const selectedCategory = cats.find(cat => cat.name === categoryName);
+
+			// If the selected category is found
+			if (selectedCategory) {
+				const categoryType = selectedCategory.type;
+
+				// If the selected category is already active, deactivate all categories of that type
+				if (selectedCategory.isActive) {
+					cats.forEach(cat => {
+						if (cat.type === categoryType) {
+							cat.isActive = false;
+						}
+					});
+				} 
+				else {
+					// If the selected category is inactive, activate it and deactivate others of the same type
+					cats.forEach(cat => {
+						if (cat.type === categoryType) {
+							cat.isActive = (cat.name === categoryName);
+						}
+					});
 				}
-				return category;
-			});
+			}
+			return cats; // Return the updated array
 		});
 	}
 
 	// Only deactivate the selected category. Same, lite stökig
 	function deactivateCategory(selectedCategory) {
-		categoriesStore.update((categories) => {
-			return categories.map((category) => {
-				if (category === selectedCategory) {
-					category.deactivate(); 
-				}
-				return category;
-			});
+		categories.update(cats => {
+			// Find the selected category
+			const selectedCategory = cats.find(cat => cat.name === categoryName);
+			selectedCategory.isActive = false;
+			return cats;
 		});
 	}
 
