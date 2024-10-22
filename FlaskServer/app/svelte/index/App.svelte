@@ -39,66 +39,53 @@
 	]);
 
 	const categories = writable([
-		new Category('Spring', Season),
-		new Category('Summer', Season),
-		new Category('Fall', Season),
-		new Category('Winter', Season),
-		new Category('Easter', Holiday),
-		new Category('Thanksgiving', Holiday),
-		new Category('Christmas', Holiday),
-		new Category('Mordern', Style),
-		new Category('Old', Style),
-		new Category('Trash', Style)
+		new Category('Spring', 'Season'),
+		new Category('Summer', 'Season'),
+		new Category('Fall', 'Season'),
+		new Category('Winter', 'Season'),
+		new Category('Easter', 'Holiday'),
+		new Category('Thanksgiving', 'Holiday'),
+		new Category('Christmas', 'Holiday'),
+		new Category('Mordern', 'Style'),
+		new Category('Old', 'Style'),
+		new Category('Trash', 'Style')
 	]);
 
-	function toggleDropdown(name) {
-		categoriesStore.update(dropdowns => {
-			for (const dropdown in dropdowns) {
-				if (dropdown.name === name) {
-					dropdown.isOpen = !dropdown.isOpen
-				}
-			}
+	function toggleDropdown(dropdown) {
+		categoryTypes.update(dropdowns => {
+			dropdown.isOpen = ! dropdown.isOpen
 			return dropdowns;
 		});
 	}
 
 	// Activate one category and deactivate all the other of the same type. Lite stökig funktion men what the hell, den funkar
-	function toggleCategory(categoryName) {
+	function toggleCategory(category) {
 		categories.update(cats => {
-			// Find the selected category
-			const selectedCategory = cats.find(cat => cat.name === categoryName);
 
-			// If the selected category is found
-			if (selectedCategory) {
-				const categoryType = selectedCategory.type;
-
-				// If the selected category is already active, deactivate all categories of that type
-				if (selectedCategory.isActive) {
-					cats.forEach(cat => {
-						if (cat.type === categoryType) {
-							cat.isActive = false;
-						}
-					});
-				} 
-				else {
-					// If the selected category is inactive, activate it and deactivate others of the same type
-					cats.forEach(cat => {
-						if (cat.type === categoryType) {
-							cat.isActive = (cat.name === categoryName);
-						}
-					});
-				}
+			// If the selected category is already active, deactivate all categories of that type
+			if (category.isActive) {
+				cats.forEach(cat => {
+					if (cat.type === category.type) {
+						cat.isActive = false;
+					}
+				});
+			} 
+			// If the selected category is inactive, activate it and deactivate others of the same type
+			else {
+				cats.forEach(cat => {
+					if (cat.type === category.type) {
+						cat.isActive = (cat.name === category.name);
+					}
+				});
 			}
-			return cats; // Return the updated array
+			return cats; 
 		});
 	}
 
 	// Only deactivate the selected category. Same, lite stökig
-	function deactivateCategory(selectedCategory) {
+	function deactivateCategory(category) {
 		categories.update(cats => {
-			// Find the selected category
-			const selectedCategory = cats.find(cat => cat.name === categoryName);
-			selectedCategory.isActive = false;
+			category.isActive = false;
 			return cats;
 		});
 	}
@@ -187,51 +174,26 @@
 	<nav class="min-h-max bg-dark-200 text-white p-4 text-base border-r text-center">
 		<h1 class="p-2 text-5xl font-title tracking-widest font-bold">PÅHITTIG</h1>
 		<ul class="mt-8">
-			<!-- Season -->
-			<li>
-				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100" on:click={() => toggleDropdown('season')}>
-					Season
-					<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({dropdowns.season ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-				</button>
-				{#if dropdowns.season}
-					<ul>
-						<li class="ml-8"><button on:click={() => setTrue(seasons, 'spring')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Spring{#if $seasons.spring}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(seasons, 'summer')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Summer{#if $seasons.summer}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(seasons, 'fall')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Fall{#if $seasons.fall}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(seasons, 'winter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Winter{#if $seasons.winter}<Check/>{/if}</button></li>
-					</ul>
-				{/if}
-			</li>
-
-			<!-- Holiday -->
-			<li>
-				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100" on:click={() => toggleDropdown('holiday')}>
-					Holiday
-					<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({dropdowns.holiday ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-				</button>
-				{#if dropdowns.holiday}
-					<ul>
-						<li class="ml-8"><button on:click={() => setTrue(holiday, 'easter')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Easter{#if $holiday.easter}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(holiday, 'thanksgiving')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Thanksgiving{#if $holiday.thanksgiving}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(holiday, 'christmas')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Christmas{#if $holiday.christmas}<Check/>{/if}</button></li>
-					</ul>
-				{/if}
-			</li>
-			
-			<!-- Style -->
-			<li>
-				<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100" on:click={() => toggleDropdown('style')}>
-					Style
-					<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({dropdowns.style ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-				</button>
-				{#if dropdowns.style}
-					<ul>
-						<li class="ml-8"><button on:click={() => setTrue(style, 'modern')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Modern{#if $style.modern}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(style, 'old')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Old{#if $style.old}<Check/>{/if}</button></li>
-						<li class="ml-8"><button on:click={() => setTrue(style, 'trash')} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">Trash{#if $style.trash}<Check/>{/if}</button></li>
-					</ul>
-				{/if}
-			</li>
+			{#each $categoryTypes as categoryType}
+				<li>
+					<button class="flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100" on:click={() => toggleDropdown(categoryType)}>
+						{categoryType.name}
+						<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#ffffff" style="transform: rotate({categoryType.isOpen ? '90deg' : '0deg'}); transition: transform 0.3s ease;"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+					</button>
+					{#if categoryType.isOpen}
+						{#each $categories.filter(category => category.type === categoryType.name) as category}
+							<li class="ml-8">
+								<button on:click={() => toggleCategory(category)} class="flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100">
+									{category.name}
+									{#if category.isActive}
+										<Check/>
+									{/if}
+								</button>
+							</li>
+						{/each}
+					{/if}
+				</li>
+			{/each}
 		</ul>
 
 		<!-- Advanced Settings -->
