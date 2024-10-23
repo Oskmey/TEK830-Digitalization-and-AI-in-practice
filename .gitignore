@@ -24,6 +24,8 @@ build/
 
 # ingonre index
 FlaskServer/app/static/svelte/index/
+FlaskServer/app/static/svelte/index/index.js
+FlaskServer/app/static/svelte/index/index.js.map
 
 # ignore images in files folder
 *.png
