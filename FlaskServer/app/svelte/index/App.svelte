@@ -1,5 +1,4 @@
 <script>
-	import { fileDrop } from './file.js';
 	import { uploadImage } from './flask.js';
     import { debug } from "svelte/internal";
 	import { writable, get } from 'svelte/store';
