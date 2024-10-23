@@ -142,16 +142,12 @@
   	}
 
 	let advancedSettings = [
-		new AdvancedSetting('Width', 1024, 100, 1600, 10, 'Width... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-		new AdvancedSetting('Height', 1024, 100, 1600, 10, 'Height... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-		new AdvancedSetting('CFG', 7, 0, 100, 1, 'CFG... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-		new AdvancedSetting('Steps', 20, 1, 100, 1, 'Steps... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Denoise... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.')
+		new AdvancedSetting('Width', 1024, 100, 1600, 10, 'Width in pixels of the generated image.'),
+		new AdvancedSetting('Height', 1024, 100, 1600, 10, 'Height in pixels of the generated image.'),
+		new AdvancedSetting('CFG', 7, 0, 100, 1, 'Classifier-Free Guidance (CFG) Scale controls how much your prompt influences the output. High values ensure close adherence, while lower values allow more creativity. Avoid maxing CFG to maintain a balanced result.'),
+		new AdvancedSetting('Steps', 20, 1, 100, 1, 'Each step removes noise, enhancing image quality. More steps can improve results, but theres no need to max them out.'),
+		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Adjusts the amount of noise in the image. Less noise keeps the image closer to the original, while more noise allows for greater variation.')
 	];
-
-	// Read me
-	let readMeDescription = ''
-	let readMeToolTip = false
 
 </script>
 
@@ -183,7 +179,7 @@
 
 		<!-- Advanced Settings -->
 		<p class="text-left p-2 mt-8">Advanced Settings</p>
-		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover each setting to get a description.</p>
+		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover over each setting to get a description.</p>
 		<ul>
 			{#each advancedSettings as setting}
 			  <li class="flex justify-between items-center w-full p-2 gap-2 rounded">
