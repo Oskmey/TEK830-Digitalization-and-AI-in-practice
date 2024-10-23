@@ -509,15 +509,39 @@ var indexApp = (function () {
       }
     }
 
-    function uploadImage(image, promt="cute squirrel", sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.6) {
+    function uploadImage(image, promptList, sampler = "Euler a", steps = 20, cfg_scale=7.0, denoising_strength = 0.75) {
         const formData = new FormData();
-
+        const promptListAdj = new Array();
+        const resultPrompt = [];
         formData.append('image', image);
-        formData.append('promt', promt);
+        
+        for (let category of promptList) {
+            for (let [key, value] of Object.entries(category)) {
+                if (value) {
+                    promptListAdj.push(key);
+                }
+            }
+        }
+        
+
+        promptListAdj.forEach(element => {
+            switch (element) {
+              case "spring":
+                resultPrompt.push("fresh, good lighting, clean");
+                break;
+
+                case "fall":
+                resultPrompt.push("cozy, autumn, low lighting, brown hue.");
+                break;
+            }
+          });
+        
+        formData.append('prompt', resultPrompt);
         formData.append('sampler', sampler);
         formData.append('steps', steps);
         formData.append('cfg_scale', cfg_scale);
         formData.append('denoising_strength', denoising_strength);
+       
 
         fetch('/upload', {
             method: 'POST',
@@ -753,7 +777,7 @@ var indexApp = (function () {
     	return child_ctx;
     }
 
-    // (131:5) {#if categoryType.isOpen}
+    // (132:5) {#if categoryType.isOpen}
     function create_if_block_3(ctx) {
     	let each_1_anchor;
     	let current;
@@ -851,14 +875,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(131:5) {#if categoryType.isOpen}",
+    		source: "(132:5) {#if categoryType.isOpen}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (136:9) {#if category.isActive}
+    // (137:9) {#if category.isActive}
     function create_if_block_4(ctx) {
     	let check;
     	let current;
@@ -890,14 +914,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(136:9) {#if category.isActive}",
+    		source: "(137:9) {#if category.isActive}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:6) {#each $categories.filter(category => category.type === categoryType.name) as category}
+    // (133:6) {#each $categories.filter(category => category.type === categoryType.name) as category}
     function create_each_block_3(ctx) {
     	let li;
     	let button;
@@ -923,9 +947,9 @@ var indexApp = (function () {
     			if (if_block) if_block.c();
     			t2 = space();
     			attr_dev(button, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button, file, 133, 8, 4752);
+    			add_location(button, file, 134, 8, 4826);
     			attr_dev(li, "class", "ml-8");
-    			add_location(li, file, 132, 7, 4725);
+    			add_location(li, file, 133, 7, 4799);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -987,14 +1011,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(132:6) {#each $categories.filter(category => category.type === categoryType.name) as category}",
+    		source: "(133:6) {#each $categories.filter(category => category.type === categoryType.name) as category}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (125:3) {#each $categoryTypes as categoryType}
+    // (126:3) {#each $categoryTypes as categoryType}
     function create_each_block_2(ctx) {
     	let li;
     	let button;
@@ -1027,7 +1051,7 @@ var indexApp = (function () {
     			if (if_block) if_block.c();
     			t3 = space();
     			attr_dev(path, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path, file, 128, 215, 4504);
+    			add_location(path, file, 129, 215, 4578);
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "height", "16px");
     			attr_dev(svg, "viewBox", "0 -960 960 960");
@@ -1035,10 +1059,10 @@ var indexApp = (function () {
     			attr_dev(svg, "fill", "#ffffff");
     			set_style(svg, "transform", "rotate(" + (/*categoryType*/ ctx[30].isOpen ? '90deg' : '0deg') + ")");
     			set_style(svg, "transition", "transform 0.3s ease");
-    			add_location(svg, file, 128, 6, 4295);
+    			add_location(svg, file, 129, 6, 4369);
     			attr_dev(button, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button, file, 126, 5, 4104);
-    			add_location(li, file, 125, 4, 4093);
+    			add_location(button, file, 127, 5, 4178);
+    			add_location(li, file, 126, 4, 4167);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1109,14 +1133,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(125:3) {#each $categoryTypes as categoryType}",
+    		source: "(126:3) {#each $categoryTypes as categoryType}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (158:6) {#if setting.showTooltip}
+    // (159:6) {#if setting.showTooltip}
     function create_if_block_2(ctx) {
     	let div;
     	let t_value = /*setting*/ ctx[27].descrition + "";
@@ -1127,7 +1151,7 @@ var indexApp = (function () {
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "class", "absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10");
-    			add_location(div, file, 158, 7, 5698);
+    			add_location(div, file, 159, 7, 5772);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1145,14 +1169,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(158:6) {#if setting.showTooltip}",
+    		source: "(159:6) {#if setting.showTooltip}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (151:3) {#each advancedSettings as setting}
+    // (152:3) {#each advancedSettings as setting}
     function create_each_block_1(ctx) {
     	let li;
     	let div;
@@ -1201,19 +1225,19 @@ var indexApp = (function () {
     			t4 = text(t4_value);
     			t5 = space();
     			attr_dev(p0, "class", "w-[7ch] text-left");
-    			add_location(p0, file, 155, 6, 5601);
+    			add_location(p0, file, 156, 6, 5675);
     			attr_dev(div, "class", "relative inline-block hover:cursor-pointer");
-    			add_location(div, file, 152, 5, 5422);
+    			add_location(div, file, 153, 5, 5496);
     			attr_dev(input, "class", "hover:cursor-pointer");
     			attr_dev(input, "type", "range");
     			attr_dev(input, "min", input_min_value = /*setting*/ ctx[27].min);
     			attr_dev(input, "max", input_max_value = /*setting*/ ctx[27].max);
     			attr_dev(input, "step", input_step_value = /*setting*/ ctx[27].step);
-    			add_location(input, file, 163, 5, 5949);
+    			add_location(input, file, 164, 5, 6023);
     			attr_dev(p1, "class", "text-right w-[4ch]");
-    			add_location(p1, file, 164, 5, 6096);
+    			add_location(p1, file, 165, 5, 6170);
     			attr_dev(li, "class", "flex justify-between items-center w-full p-2 gap-2 rounded");
-    			add_location(li, file, 151, 4, 5344);
+    			add_location(li, file, 152, 4, 5418);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1288,14 +1312,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(151:3) {#each advancedSettings as setting}",
+    		source: "(152:3) {#each advancedSettings as setting}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (174:3) {#if category.isActive}
+    // (175:3) {#if category.isActive}
     function create_if_block_1(ctx) {
     	let div;
     	let t0_value = /*category*/ ctx[24].name + "";
@@ -1322,9 +1346,9 @@ var indexApp = (function () {
     			create_component(cross.$$.fragment);
     			t2 = space();
     			attr_dev(button, "class", "rounded hover:bg-dark-200");
-    			add_location(button, file, 176, 5, 6483);
+    			add_location(button, file, 177, 5, 6557);
     			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
-    			add_location(div, file, 174, 4, 6350);
+    			add_location(div, file, 175, 4, 6424);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1365,14 +1389,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(174:3) {#if category.isActive}",
+    		source: "(175:3) {#if category.isActive}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (173:2) {#each $categories as category}
+    // (174:2) {#each $categories as category}
     function create_each_block(ctx) {
     	let if_block_anchor;
     	let current;
@@ -1431,14 +1455,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(173:2) {#each $categories as category}",
+    		source: "(174:2) {#each $categories as category}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (188:3) {:else}
+    // (189:3) {:else}
     function create_else_block(ctx) {
     	let img;
     	let img_src_value;
@@ -1451,7 +1475,7 @@ var indexApp = (function () {
     			attr_dev(img, "id", "output");
     			set_style(img, "display", "block");
     			attr_dev(img, "alt", "Uploaded_image");
-    			add_location(img, file, 188, 4, 7121);
+    			add_location(img, file, 189, 4, 7195);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -1470,14 +1494,14 @@ var indexApp = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(188:3) {:else}",
+    		source: "(189:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (185:3) {#if !imageSrc}
+    // (186:3) {#if !imageSrc}
     function create_if_block(ctx) {
     	let h1;
     	let t1;
@@ -1491,9 +1515,9 @@ var indexApp = (function () {
     			p = element("p");
     			p.textContent = "The image should contain your product with a white background";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 185, 4, 6914);
+    			add_location(h1, file, 186, 4, 6988);
     			attr_dev(p, "class", "text-xs");
-    			add_location(p, file, 186, 4, 7019);
+    			add_location(p, file, 187, 4, 7093);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -1512,7 +1536,7 @@ var indexApp = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(185:3) {#if !imageSrc}",
+    		source: "(186:3) {#if !imageSrc}",
     		ctx
     	});
 
@@ -1629,26 +1653,26 @@ var indexApp = (function () {
     			button = element("button");
     			t11 = text("Generate");
     			attr_dev(h1, "class", "p-2 text-5xl font-title tracking-widest font-bold");
-    			add_location(h1, file, 122, 2, 3948);
+    			add_location(h1, file, 123, 2, 4022);
     			attr_dev(ul0, "class", "mt-8");
-    			add_location(ul0, file, 123, 2, 4027);
+    			add_location(ul0, file, 124, 2, 4101);
     			attr_dev(p0, "class", "text-left p-2 mt-8");
-    			add_location(p0, file, 147, 2, 5138);
+    			add_location(p0, file, 148, 2, 5212);
     			attr_dev(p1, "class", "text-left px-2 mb-4 text-xs text-gray-500");
-    			add_location(p1, file, 148, 2, 5193);
-    			add_location(ul1, file, 149, 2, 5294);
+    			add_location(p1, file, 149, 2, 5267);
+    			add_location(ul1, file, 150, 2, 5368);
     			attr_dev(nav, "class", "min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
-    			add_location(nav, file, 121, 1, 3863);
+    			add_location(nav, file, 122, 1, 3937);
     			attr_dev(section, "class", "w-1/5 h-full bg-black text-white p-4");
-    			add_location(section, file, 171, 1, 6227);
+    			add_location(section, file, 172, 1, 6301);
     			attr_dev(label, "for", "filepicker");
     			attr_dev(label, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer");
-    			add_location(label, file, 183, 2, 6745);
+    			add_location(label, file, 184, 2, 6819);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/**");
     			attr_dev(input, "id", "filepicker");
     			set_style(input, "display", "none");
-    			add_location(input, file, 191, 2, 7264);
+    			add_location(input, file, 192, 2, 7338);
     			attr_dev(button, "type", "button");
 
     			attr_dev(button, "class", button_class_value = "mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*imageSrc*/ ctx[0]
@@ -1656,11 +1680,11 @@ var indexApp = (function () {
     			: 'opacity-50 cursor-not-allowed'));
 
     			button.disabled = button_disabled_value = !/*imageSrc*/ ctx[0];
-    			add_location(button, file, 192, 2, 7373);
+    			add_location(button, file, 193, 2, 7447);
     			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-full bg-black text-white font-body");
-    			add_location(main, file, 182, 1, 6639);
+    			add_location(main, file, 183, 1, 6713);
     			attr_dev(div, "class", "flex min-h-screen max-w-screen bg-black");
-    			add_location(div, file, 120, 0, 3807);
+    			add_location(div, file, 121, 0, 3881);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1890,9 +1914,10 @@ var indexApp = (function () {
     	}
 
     	class Category {
-    		constructor(name, type) {
+    		constructor(name, type, prompt) {
     			this.name = name;
     			this.type = type;
+    			this.prompt = prompt;
     			this.isActive = false;
     		}
     	}
@@ -1907,16 +1932,16 @@ var indexApp = (function () {
     	component_subscribe($$self, categoryTypes, value => $$invalidate(3, $categoryTypes = value));
 
     	const categories = writable([
-    		new Category('Spring', 'Season'),
-    		new Category('Summer', 'Season'),
-    		new Category('Fall', 'Season'),
-    		new Category('Winter', 'Season'),
-    		new Category('Easter', 'Holiday'),
-    		new Category('Thanksgiving', 'Holiday'),
-    		new Category('Christmas', 'Holiday'),
-    		new Category('Mordern', 'Style'),
-    		new Category('Old', 'Style'),
-    		new Category('Trash', 'Style')
+    		new Category('Spring', 'Season', ''),
+    		new Category('Summer', 'Season', ''),
+    		new Category('Fall', 'Season', ''),
+    		new Category('Winter', 'Season', ''),
+    		new Category('Easter', 'Holiday', ''),
+    		new Category('Thanksgiving', 'Holiday', ''),
+    		new Category('Christmas', 'Holiday', ''),
+    		new Category('Mordern', 'Style', ''),
+    		new Category('Old', 'Style', ''),
+    		new Category('Trash', 'Style', '')
     	]);
 
     	validate_store(categories, 'categories');

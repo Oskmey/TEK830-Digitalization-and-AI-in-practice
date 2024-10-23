@@ -18,9 +18,10 @@
 	}
 
 	class Category {
-		constructor(name, type) {
+		constructor(name, type, prompt) {
 			this.name = name;  
-			this.type = type; 
+			this.type = type;
+			this.prompt = prompt; 
 			this.isActive = false;
 		}
 	}
@@ -32,16 +33,16 @@
 	]);
 
 	const categories = writable([
-		new Category('Spring', 'Season'),
-		new Category('Summer', 'Season'),
-		new Category('Fall', 'Season'),
-		new Category('Winter', 'Season'),
-		new Category('Easter', 'Holiday'),
-		new Category('Thanksgiving', 'Holiday'),
-		new Category('Christmas', 'Holiday'),
-		new Category('Mordern', 'Style'),
-		new Category('Old', 'Style'),
-		new Category('Trash', 'Style')
+		new Category('Spring', 'Season', ''),
+		new Category('Summer', 'Season', ''),
+		new Category('Fall', 'Season', ''),
+		new Category('Winter', 'Season', ''),
+		new Category('Easter', 'Holiday', ''),
+		new Category('Thanksgiving', 'Holiday', ''),
+		new Category('Christmas', 'Holiday', ''),
+		new Category('Mordern', 'Style', ''),
+		new Category('Old', 'Style', ''),
+		new Category('Trash', 'Style', '')
 	]);
 
 	function toggleDropdown(dropdown) {
