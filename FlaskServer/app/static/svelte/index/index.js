@@ -501,24 +501,6 @@ var indexApp = (function () {
         $inject_state() { }
     }
 
-    function fileDrop(event, updateImage) {
-      const files = event.target.files;
-
-      try {
-          const file = files[0]; 
-          updateImage(file);
-
-          const reader = new FileReader();
-          reader.onload = () => {
-              var dataURL = reader.result;
-              updateImage(dataURL, file);
-          };
-          reader.readAsDataURL(file);
-      } catch (err) {
-          console.error(err);
-      }
-    }
-
     async function uploadImage(image, promptList, steps=20, cfg_scale=7.0, denoising_strength=0.7, width=1024, height=1024, sampler = "Euler a") {
         const formData = new FormData();
         formData.append('image', image);
@@ -774,7 +756,7 @@ var indexApp = (function () {
     	return child_ctx;
     }
 
-    // (168:5) {#if categoryType.isOpen}
+    // (163:5) {#if categoryType.isOpen}
     function create_if_block_4(ctx) {
     	let each_1_anchor;
     	let current;
@@ -872,14 +854,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(168:5) {#if categoryType.isOpen}",
+    		source: "(163:5) {#if categoryType.isOpen}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (173:9) {#if category.isActive}
+    // (168:9) {#if category.isActive}
     function create_if_block_5(ctx) {
     	let check;
     	let current;
@@ -911,14 +893,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(173:9) {#if category.isActive}",
+    		source: "(168:9) {#if category.isActive}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (169:6) {#each $categories.filter(category => category.type === categoryType.name) as category}
+    // (164:6) {#each $categories.filter(category => category.type === categoryType.name) as category}
     function create_each_block_3(ctx) {
     	let li;
     	let button;
@@ -944,9 +926,9 @@ var indexApp = (function () {
     			if (if_block) if_block.c();
     			t2 = space();
     			attr_dev(button, "class", "flex justify-between items-center w-full text-left p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button, file, 170, 8, 5860);
+    			add_location(button, file, 165, 8, 5617);
     			attr_dev(li, "class", "ml-8");
-    			add_location(li, file, 169, 7, 5834);
+    			add_location(li, file, 164, 7, 5591);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1008,14 +990,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(169:6) {#each $categories.filter(category => category.type === categoryType.name) as category}",
+    		source: "(164:6) {#each $categories.filter(category => category.type === categoryType.name) as category}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (162:3) {#each $categoryTypes as categoryType}
+    // (157:3) {#each $categoryTypes as categoryType}
     function create_each_block_2(ctx) {
     	let li;
     	let button;
@@ -1048,7 +1030,7 @@ var indexApp = (function () {
     			if (if_block) if_block.c();
     			t3 = space();
     			attr_dev(path, "d", "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z");
-    			add_location(path, file, 165, 215, 5617);
+    			add_location(path, file, 160, 215, 5374);
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "height", "16px");
     			attr_dev(svg, "viewBox", "0 -960 960 960");
@@ -1056,10 +1038,10 @@ var indexApp = (function () {
     			attr_dev(svg, "fill", "#ffffff");
     			set_style(svg, "transform", "rotate(" + (/*categoryType*/ ctx[34].isOpen ? '90deg' : '0deg') + ")");
     			set_style(svg, "transition", "transform 0.3s ease");
-    			add_location(svg, file, 165, 6, 5408);
+    			add_location(svg, file, 160, 6, 5165);
     			attr_dev(button, "class", "flex justify-between items-center w-full p-2 rounded transition ease-in-out hover:bg-dark-100");
-    			add_location(button, file, 163, 5, 5219);
-    			add_location(li, file, 162, 4, 5209);
+    			add_location(button, file, 158, 5, 4976);
+    			add_location(li, file, 157, 4, 4966);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1130,14 +1112,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(162:3) {#each $categoryTypes as categoryType}",
+    		source: "(157:3) {#each $categoryTypes as categoryType}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (195:6) {#if setting.showTooltip}
+    // (190:6) {#if setting.showTooltip}
     function create_if_block_3(ctx) {
     	let div;
     	let t_value = /*setting*/ ctx[31].descrition + "";
@@ -1148,7 +1130,7 @@ var indexApp = (function () {
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "class", "absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10");
-    			add_location(div, file, 195, 7, 6781);
+    			add_location(div, file, 190, 5, 6539);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1166,31 +1148,32 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(195:6) {#if setting.showTooltip}",
+    		source: "(190:6) {#if setting.showTooltip}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (188:3) {#each advancedSettings as setting}
+    // (183:3) {#each advancedSettings as setting}
     function create_each_block_1(ctx) {
     	let li;
     	let div;
-    	let p0;
+    	let p;
     	let t0_value = /*setting*/ ctx[31].name + "";
     	let t0;
     	let t1;
     	let t2;
-    	let input;
-    	let input_min_value;
-    	let input_max_value;
-    	let input_step_value;
+    	let input0;
+    	let input0_min_value;
+    	let input0_max_value;
+    	let input0_step_value;
     	let t3;
-    	let p1;
-    	let t4_value = /*setting*/ ctx[31].value + "";
+    	let input1;
+    	let input1_min_value;
+    	let input1_max_value;
+    	let input1_step_value;
     	let t4;
-    	let t5;
     	let mounted;
     	let dispose;
     	let if_block = /*setting*/ ctx[31].showTooltip && create_if_block_3(ctx);
@@ -1203,60 +1186,74 @@ var indexApp = (function () {
     		return /*mouseleave_handler*/ ctx[19](/*setting*/ ctx[31], /*each_value_1*/ ctx[32], /*setting_index*/ ctx[33]);
     	}
 
-    	function input_change_input_handler() {
-    		/*input_change_input_handler*/ ctx[20].call(input, /*each_value_1*/ ctx[32], /*setting_index*/ ctx[33]);
+    	function input0_change_input_handler() {
+    		/*input0_change_input_handler*/ ctx[20].call(input0, /*each_value_1*/ ctx[32], /*setting_index*/ ctx[33]);
+    	}
+
+    	function input1_input_handler() {
+    		/*input1_input_handler*/ ctx[21].call(input1, /*each_value_1*/ ctx[32], /*setting_index*/ ctx[33]);
+    	}
+
+    	function blur_handler(...args) {
+    		return /*blur_handler*/ ctx[22](/*setting*/ ctx[31], /*each_value_1*/ ctx[32], /*setting_index*/ ctx[33], ...args);
     	}
 
     	const block = {
     		c: function create() {
     			li = element("li");
     			div = element("div");
-    			p0 = element("p");
+    			p = element("p");
     			t0 = text(t0_value);
     			t1 = space();
     			if (if_block) if_block.c();
     			t2 = space();
-    			input = element("input");
+    			input0 = element("input");
     			t3 = space();
-    			p1 = element("p");
-    			t4 = text(t4_value);
-    			t5 = space();
-    			attr_dev(p0, "class", "w-[7ch] text-left");
-    			add_location(p0, file, 192, 6, 6687);
+    			input1 = element("input");
+    			t4 = space();
+    			attr_dev(p, "class", "w-[7ch] text-left");
+    			add_location(p, file, 187, 6, 6447);
     			attr_dev(div, "class", "relative inline-block hover:cursor-pointer");
-    			add_location(div, file, 189, 5, 6511);
-    			attr_dev(input, "class", "hover:cursor-pointer");
-    			attr_dev(input, "type", "range");
-    			attr_dev(input, "min", input_min_value = /*setting*/ ctx[31].min);
-    			attr_dev(input, "max", input_max_value = /*setting*/ ctx[31].max);
-    			attr_dev(input, "step", input_step_value = /*setting*/ ctx[31].step);
-    			add_location(input, file, 200, 5, 7027);
-    			attr_dev(p1, "class", "text-right w-[4ch]");
-    			add_location(p1, file, 201, 5, 7173);
+    			add_location(div, file, 184, 4, 6273);
+    			attr_dev(input0, "class", "hover:cursor-pointer");
+    			attr_dev(input0, "type", "range");
+    			attr_dev(input0, "min", input0_min_value = /*setting*/ ctx[31].min);
+    			attr_dev(input0, "max", input0_max_value = /*setting*/ ctx[31].max);
+    			attr_dev(input0, "step", input0_step_value = /*setting*/ ctx[31].step);
+    			add_location(input0, file, 195, 4, 6780);
+    			attr_dev(input1, "type", "number");
+    			attr_dev(input1, "min", input1_min_value = /*setting*/ ctx[31].min);
+    			attr_dev(input1, "max", input1_max_value = /*setting*/ ctx[31].max);
+    			attr_dev(input1, "step", input1_step_value = /*setting*/ ctx[31].step);
+    			attr_dev(input1, "class", "text-right w-[4ch] bg-transparent outline-none appearance-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded transition-colors duration-2000");
+    			add_location(input1, file, 196, 4, 6925);
     			attr_dev(li, "class", "flex justify-between items-center w-full p-2 gap-2 rounded");
-    			add_location(li, file, 188, 4, 6434);
+    			add_location(li, file, 183, 5, 6197);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, div);
-    			append_dev(div, p0);
-    			append_dev(p0, t0);
+    			append_dev(div, p);
+    			append_dev(p, t0);
     			append_dev(div, t1);
     			if (if_block) if_block.m(div, null);
     			append_dev(li, t2);
-    			append_dev(li, input);
-    			set_input_value(input, /*setting*/ ctx[31].value);
+    			append_dev(li, input0);
+    			set_input_value(input0, /*setting*/ ctx[31].value);
     			append_dev(li, t3);
-    			append_dev(li, p1);
-    			append_dev(p1, t4);
-    			append_dev(li, t5);
+    			append_dev(li, input1);
+    			set_input_value(input1, /*setting*/ ctx[31].value);
+    			append_dev(li, t4);
 
     			if (!mounted) {
     				dispose = [
     					listen_dev(div, "mouseenter", mouseenter_handler, false, false, false, false),
     					listen_dev(div, "mouseleave", mouseleave_handler, false, false, false, false),
-    					listen_dev(input, "change", input_change_input_handler),
-    					listen_dev(input, "input", input_change_input_handler)
+    					listen_dev(input0, "change", input0_change_input_handler),
+    					listen_dev(input0, "input", input0_change_input_handler),
+    					listen_dev(input1, "input", input1_input_handler),
+    					listen_dev(input1, "focus", focus_handler, false, false, false, false),
+    					listen_dev(input1, "blur", blur_handler, false, false, false, false)
     				];
 
     				mounted = true;
@@ -1279,23 +1276,37 @@ var indexApp = (function () {
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*advancedSettings*/ 4 && input_min_value !== (input_min_value = /*setting*/ ctx[31].min)) {
-    				attr_dev(input, "min", input_min_value);
+    			if (dirty[0] & /*advancedSettings*/ 4 && input0_min_value !== (input0_min_value = /*setting*/ ctx[31].min)) {
+    				attr_dev(input0, "min", input0_min_value);
     			}
 
-    			if (dirty[0] & /*advancedSettings*/ 4 && input_max_value !== (input_max_value = /*setting*/ ctx[31].max)) {
-    				attr_dev(input, "max", input_max_value);
+    			if (dirty[0] & /*advancedSettings*/ 4 && input0_max_value !== (input0_max_value = /*setting*/ ctx[31].max)) {
+    				attr_dev(input0, "max", input0_max_value);
     			}
 
-    			if (dirty[0] & /*advancedSettings*/ 4 && input_step_value !== (input_step_value = /*setting*/ ctx[31].step)) {
-    				attr_dev(input, "step", input_step_value);
+    			if (dirty[0] & /*advancedSettings*/ 4 && input0_step_value !== (input0_step_value = /*setting*/ ctx[31].step)) {
+    				attr_dev(input0, "step", input0_step_value);
     			}
 
     			if (dirty[0] & /*advancedSettings*/ 4) {
-    				set_input_value(input, /*setting*/ ctx[31].value);
+    				set_input_value(input0, /*setting*/ ctx[31].value);
     			}
 
-    			if (dirty[0] & /*advancedSettings*/ 4 && t4_value !== (t4_value = /*setting*/ ctx[31].value + "")) set_data_dev(t4, t4_value);
+    			if (dirty[0] & /*advancedSettings*/ 4 && input1_min_value !== (input1_min_value = /*setting*/ ctx[31].min)) {
+    				attr_dev(input1, "min", input1_min_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && input1_max_value !== (input1_max_value = /*setting*/ ctx[31].max)) {
+    				attr_dev(input1, "max", input1_max_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && input1_step_value !== (input1_step_value = /*setting*/ ctx[31].step)) {
+    				attr_dev(input1, "step", input1_step_value);
+    			}
+
+    			if (dirty[0] & /*advancedSettings*/ 4 && to_number(input1.value) !== /*setting*/ ctx[31].value) {
+    				set_input_value(input1, /*setting*/ ctx[31].value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -1309,14 +1320,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(188:3) {#each advancedSettings as setting}",
+    		source: "(183:3) {#each advancedSettings as setting}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (211:3) {#if category.isActive}
+    // (242:3) {#if category.isActive}
     function create_if_block_2(ctx) {
     	let div;
     	let t0_value = /*category*/ ctx[28].name + "";
@@ -1331,7 +1342,7 @@ var indexApp = (function () {
     	cross = new Cross({ $$inline: true });
 
     	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[21](/*category*/ ctx[28]);
+    		return /*click_handler_2*/ ctx[23](/*category*/ ctx[28]);
     	}
 
     	const block = {
@@ -1343,9 +1354,9 @@ var indexApp = (function () {
     			create_component(cross.$$.fragment);
     			t2 = space();
     			attr_dev(button, "class", "rounded hover:bg-dark-200");
-    			add_location(button, file, 213, 5, 7548);
+    			add_location(button, file, 244, 5, 8700);
     			attr_dev(div, "class", "flex justify-between bg-dark-200 items-center w-full p-2 mb-4 border border-white rounded");
-    			add_location(div, file, 211, 4, 7417);
+    			add_location(div, file, 242, 4, 8569);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1386,14 +1397,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(211:3) {#if category.isActive}",
+    		source: "(242:3) {#if category.isActive}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (210:2) {#each $categories as category}
+    // (241:2) {#each $categories as category}
     function create_each_block(ctx) {
     	let if_block_anchor;
     	let current;
@@ -1452,14 +1463,14 @@ var indexApp = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(210:2) {#each $categories as category}",
+    		source: "(241:2) {#each $categories as category}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (225:3) {:else}
+    // (256:3) {:else}
     function create_else_block_1(ctx) {
     	let img;
     	let img_src_value;
@@ -1472,7 +1483,7 @@ var indexApp = (function () {
     			attr_dev(img, "id", "output");
     			set_style(img, "display", "block");
     			attr_dev(img, "alt", "Uploaded_image");
-    			add_location(img, file, 225, 4, 8174);
+    			add_location(img, file, 256, 4, 9326);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -1491,14 +1502,14 @@ var indexApp = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(225:3) {:else}",
+    		source: "(256:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (222:3) {#if !imageSrc}
+    // (253:3) {#if !imageSrc}
     function create_if_block_1(ctx) {
     	let h1;
     	let t1;
@@ -1512,9 +1523,9 @@ var indexApp = (function () {
     			p = element("p");
     			p.textContent = "The image should contain your product with a white background";
     			attr_dev(h1, "class", "text-3xl text-red-500 font-bold tracking-tight text-center mb-5");
-    			add_location(h1, file, 222, 4, 7970);
+    			add_location(h1, file, 253, 4, 9122);
     			attr_dev(p, "class", "text-xs");
-    			add_location(p, file, 223, 4, 8074);
+    			add_location(p, file, 254, 4, 9226);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -1533,14 +1544,14 @@ var indexApp = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(222:3) {#if !imageSrc}",
+    		source: "(253:3) {#if !imageSrc}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (236:3) {:else}
+    // (268:3) {:else}
     function create_else_block(ctx) {
     	let t;
 
@@ -1563,46 +1574,56 @@ var indexApp = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(236:3) {:else}",
+    		source: "(268:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (231:3) {#if isLoading}
+    // (262:3) {#if isLoading}
     function create_if_block(ctx) {
     	let svg;
     	let path0;
     	let path1;
+    	let t0;
+    	let t1;
 
     	const block = {
     		c: function create() {
     			svg = svg_element("svg");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
+    			t0 = space();
+    			t1 = text(/*buttonText*/ ctx[3]);
     			attr_dev(path0, "d", "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z");
     			attr_dev(path0, "fill", "#E5E7EB");
-    			add_location(path0, file, 232, 5, 8910);
+    			add_location(path0, file, 263, 5, 10062);
     			attr_dev(path1, "d", "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z");
     			attr_dev(path1, "fill", "currentColor");
-    			add_location(path1, file, 233, 5, 9307);
+    			add_location(path1, file, 264, 5, 10459);
     			attr_dev(svg, "aria-hidden", "true");
     			attr_dev(svg, "role", "status");
     			attr_dev(svg, "class", "inline w-4 h-4 me-3 text-white animate-spin");
     			attr_dev(svg, "viewBox", "0 0 100 101");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			add_location(svg, file, 231, 4, 8745);
+    			add_location(svg, file, 262, 4, 9897);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
     			append_dev(svg, path0);
     			append_dev(svg, path1);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*buttonText*/ 8) set_data_dev(t1, /*buttonText*/ ctx[3]);
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(svg);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
     		}
     	};
 
@@ -1610,7 +1631,7 @@ var indexApp = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(231:3) {#if isLoading}",
+    		source: "(262:3) {#if isLoading}",
     		ctx
     	});
 
@@ -1708,7 +1729,7 @@ var indexApp = (function () {
     			p0.textContent = "Advanced Settings";
     			t4 = space();
     			p1 = element("p");
-    			p1.textContent = "Hover each setting to get a description.";
+    			p1.textContent = "Hover over each setting to get a description.";
     			t6 = space();
     			ul1 = element("ul");
 
@@ -1733,26 +1754,26 @@ var indexApp = (function () {
     			button = element("button");
     			if_block1.c();
     			attr_dev(h1, "class", "p-2 text-5xl font-title tracking-widest font-bold");
-    			add_location(h1, file, 159, 2, 5067);
+    			add_location(h1, file, 154, 2, 4824);
     			attr_dev(ul0, "class", "mt-8");
-    			add_location(ul0, file, 160, 2, 5145);
+    			add_location(ul0, file, 155, 2, 4902);
     			attr_dev(p0, "class", "text-left p-2 mt-8");
-    			add_location(p0, file, 184, 2, 6232);
+    			add_location(p0, file, 179, 2, 5989);
     			attr_dev(p1, "class", "text-left px-2 mb-4 text-xs text-gray-500");
-    			add_location(p1, file, 185, 2, 6286);
-    			add_location(ul1, file, 186, 2, 6386);
+    			add_location(p1, file, 180, 2, 6043);
+    			add_location(ul1, file, 181, 2, 6148);
     			attr_dev(nav, "class", "min-h-max bg-dark-200 text-white p-4 text-base border-r text-center");
-    			add_location(nav, file, 158, 1, 4983);
+    			add_location(nav, file, 153, 1, 4740);
     			attr_dev(section, "class", "w-1/5 h-full bg-black text-white p-4");
-    			add_location(section, file, 208, 1, 7297);
+    			add_location(section, file, 239, 1, 8449);
     			attr_dev(label, "for", "filepicker");
     			attr_dev(label, "class", "px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer");
-    			add_location(label, file, 220, 2, 7803);
+    			add_location(label, file, 251, 2, 8955);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/**");
     			attr_dev(input, "id", "filepicker");
     			set_style(input, "display", "none");
-    			add_location(input, file, 228, 2, 8314);
+    			add_location(input, file, 259, 2, 9466);
     			attr_dev(button, "type", "button");
 
     			attr_dev(button, "class", button_class_value = "mt-16 text-white text-3xl py-2 px-4 bg-dark-200 border border-white rounded-lg transition ease-in-out " + (/*isGenerateDisabled*/ ctx[4]
@@ -1760,11 +1781,11 @@ var indexApp = (function () {
     			: 'hover:bg-dark-100 cursor-pointer'));
 
     			button.disabled = /*isGenerateDisabled*/ ctx[4];
-    			add_location(button, file, 229, 2, 8422);
+    			add_location(button, file, 260, 2, 9574);
     			attr_dev(main, "class", "flex flex-col items-center justify-center h-screen w-full bg-black text-white font-body");
-    			add_location(main, file, 219, 1, 7698);
+    			add_location(main, file, 250, 1, 8850);
     			attr_dev(div, "class", "flex min-h-screen max-w-screen bg-black");
-    			add_location(div, file, 157, 0, 4928);
+    			add_location(div, file, 152, 0, 4685);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1818,7 +1839,7 @@ var indexApp = (function () {
     			if (!mounted) {
     				dispose = [
     					listen_dev(input, "change", /*handleFileDrop*/ ctx[13], false, false, false, false),
-    					listen_dev(button, "click", /*click_handler_3*/ ctx[22], false, false, false, false)
+    					listen_dev(button, "click", /*click_handler_3*/ ctx[24], false, false, false, false)
     				];
 
     				mounted = true;
@@ -1990,6 +2011,10 @@ var indexApp = (function () {
     	return block;
     }
 
+    const focus_handler = e => {
+    	e.target.classList.add('outline', 'outline-white');
+    };
+
     function instance($$self, $$props, $$invalidate) {
     	let imageSrc;
     	let isGenerateDisabled;
@@ -2123,17 +2148,13 @@ var indexApp = (function () {
     	}
 
     	let advancedSettings = [
-    		new AdvancedSetting('Width', 1024, 100, 1600, 10, 'Width... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-    		new AdvancedSetting('Height', 1024, 100, 1600, 10, 'Height... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-    		new AdvancedSetting('CFG', 7, 0, 100, 1, 'CFG... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-    		new AdvancedSetting('Steps', 20, 1, 100, 1, 'Steps... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.'),
-    		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Denoise... lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lacinia mauris nec libero auctor, eu dapibus augue pellentesque.')
+    		new AdvancedSetting('Width', 1024, 100, 1600, 10, 'Width in pixels of the generated image.'),
+    		new AdvancedSetting('Height', 1024, 100, 1600, 10, 'Height in pixels of the generated image.'),
+    		new AdvancedSetting('CFG', 7, 0, 100, 1, 'Classifier-Free Guidance (CFG) Scale controls how much your prompt influences the output. High values ensure close adherence, while lower values allow more creativity. Avoid maxing CFG to maintain a balanced result.'),
+    		new AdvancedSetting('Steps', 20, 1, 100, 1, 'Each step removes noise, enhancing image quality. More steps can improve results, but theres no need to max them out.'),
+    		new AdvancedSetting('Denoise', 0.7, 0, 1, 0.1, 'Adjusts the amount of noise in the image. Less noise keeps the image closer to the original, while more noise allows for greater variation.')
     	];
 
-    	// Read me
-    	let readMeDescription = '';
-
-    	let readMeToolTip = false;
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -2146,16 +2167,61 @@ var indexApp = (function () {
     	const mouseenter_handler = (setting, each_value_1, setting_index) => $$invalidate(2, each_value_1[setting_index].showTooltip = true, advancedSettings);
     	const mouseleave_handler = (setting, each_value_1, setting_index) => $$invalidate(2, each_value_1[setting_index].showTooltip = false, advancedSettings);
 
-    	function input_change_input_handler(each_value_1, setting_index) {
+    	function input0_change_input_handler(each_value_1, setting_index) {
     		each_value_1[setting_index].value = to_number(this.value);
     		$$invalidate(2, advancedSettings);
     	}
+
+    	function input1_input_handler(each_value_1, setting_index) {
+    		each_value_1[setting_index].value = to_number(this.value);
+    		$$invalidate(2, advancedSettings);
+    	}
+
+    	const blur_handler = (setting, each_value_1, setting_index, e) => {
+    		e.target.classList.remove('outline-white');
+    		let value = parseFloat(e.target.value);
+    		let invalid = false;
+
+    		if (isNaN(value) || e.target.value === '') {
+    			e.target.value = setting.min;
+    			$$invalidate(2, each_value_1[setting_index].value = setting.min, advancedSettings);
+    			invalid = true;
+    		} else if (value < setting.min) {
+    			e.target.value = setting.min;
+    			$$invalidate(2, each_value_1[setting_index].value = setting.min, advancedSettings);
+    			invalid = true;
+    		} else if (value > setting.max) {
+    			e.target.value = setting.max;
+    			$$invalidate(2, each_value_1[setting_index].value = setting.max, advancedSettings);
+    			invalid = true;
+    		} else {
+    			$$invalidate(2, each_value_1[setting_index].value = value, advancedSettings);
+    			e.target.classList.remove('outline', 'outline-red-500', 'outline-transparent');
+    		}
+
+    		if (invalid) {
+    			e.target.classList.add('outline', 'outline-red-500');
+
+    			setTimeout(
+    				() => {
+    					e.target.classList.replace('outline-red-500', 'outline-transparent');
+
+    					setTimeout(
+    						() => {
+    							e.target.classList.remove('outline', 'outline-transparent');
+    						},
+    						2000
+    					);
+    				},
+    				500
+    			);
+    		}
+    	};
 
     	const click_handler_2 = category => deactivateCategory(category);
     	const click_handler_3 = () => handleGenerate();
 
     	$$self.$capture_state = () => ({
-    		fileDrop,
     		uploadImage,
     		debug,
     		writable,
@@ -2175,8 +2241,6 @@ var indexApp = (function () {
     		handleGenerate,
     		AdvancedSetting,
     		advancedSettings,
-    		readMeDescription,
-    		readMeToolTip,
     		buttonText,
     		isGenerateDisabled,
     		imageSrc,
@@ -2188,8 +2252,6 @@ var indexApp = (function () {
     		if ('imageFile' in $$props) $$invalidate(0, imageFile = $$props.imageFile);
     		if ('isLoading' in $$props) $$invalidate(1, isLoading = $$props.isLoading);
     		if ('advancedSettings' in $$props) $$invalidate(2, advancedSettings = $$props.advancedSettings);
-    		if ('readMeDescription' in $$props) readMeDescription = $$props.readMeDescription;
-    		if ('readMeToolTip' in $$props) readMeToolTip = $$props.readMeToolTip;
     		if ('buttonText' in $$props) $$invalidate(3, buttonText = $$props.buttonText);
     		if ('isGenerateDisabled' in $$props) $$invalidate(4, isGenerateDisabled = $$props.isGenerateDisabled);
     		if ('imageSrc' in $$props) $$invalidate(5, imageSrc = $$props.imageSrc);
@@ -2234,7 +2296,9 @@ var indexApp = (function () {
     		click_handler_1,
     		mouseenter_handler,
     		mouseleave_handler,
-    		input_change_input_handler,
+    		input0_change_input_handler,
+    		input1_input_handler,
+    		blur_handler,
     		click_handler_2,
     		click_handler_3
     	];
