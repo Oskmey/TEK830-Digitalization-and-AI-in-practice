@@ -1,5 +1,6 @@
 # Simplified Img2Img Interface with Diffusion Models
-![KRAFT](https://github.com/user-attachments/assets/98632a17-1ab9-476a-ac49-56a84930162f)
+![PÅHITTIG](https://github.com/user-attachments/assets/977b859d-74a0-470b-afb1-18fc1cd5ea5f)
+
 
 
 This project was developed for the TEK830 Digitalization and AI in Practice course. It provides a simplified interface for image-to-image (img2img) generation using diffusion models.
