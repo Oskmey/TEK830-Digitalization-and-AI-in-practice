@@ -116,7 +116,7 @@
 			advancedSettings.find(setting => setting.name === 'Height').value
 		);
 
-		imageSrc = generatedImage;
+		imageFile = generatedImage;
 		} 
 		
 		catch (error) {

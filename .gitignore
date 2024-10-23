@@ -23,7 +23,7 @@ build/
 *.log
 
 # ingonre index
-FlaskServer/app/static/
+FlaskServer/app/static/svelte/index/
 
 # ignore images in files folder
 *.png
@@ -38,3 +38,5 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
