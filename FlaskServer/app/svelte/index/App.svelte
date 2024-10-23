@@ -186,23 +186,59 @@
 		<p class="text-left px-2 mb-4 text-xs text-gray-500">Hover each setting to get a description.</p>
 		<ul>
 			{#each advancedSettings as setting}
-				<li class="flex justify-between items-center w-full p-2 gap-2 rounded">
-					<div class="relative inline-block hover:cursor-pointer"
-							on:mouseenter={() => setting.showTooltip = true}
-							on:mouseleave={() => setting.showTooltip = false}>
-						<p class="w-[7ch] text-left">{setting.name}</p>
-						
-						{#if setting.showTooltip}
-							<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
-								{setting.descrition}							
-							</div>
-						{/if}
-					</div>					
-					<input class="hover:cursor-pointer" type="range" min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} />
-					<p class="text-right w-[4ch]">{setting.value}</p>
-				</li>
+			  <li class="flex justify-between items-center w-full p-2 gap-2 rounded">
+				<div class="relative inline-block hover:cursor-pointer"
+					 on:mouseenter={() => setting.showTooltip = true}
+					 on:mouseleave={() => setting.showTooltip = false}>
+				  <p class="w-[7ch] text-left">{setting.name}</p>
+				  
+				  {#if setting.showTooltip}
+					<div class="absolute w-52 bottom-full transform -translate-x-0 mb-2 bg-dark-200 border border-white drop-shadow-xl text-xs text-left p-2 rounded shadow-lg z-10">
+					  {setting.descrition}							
+					</div>
+				  {/if}
+				</div>					
+				<input class="hover:cursor-pointer" type="range" min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} />
+				<input type="number"  min="{setting.min}" max="{setting.max}" step="{setting.step}" bind:value={setting.value} class="text-right w-[4ch] bg-transparent outline-none appearance-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded transition-colors duration-2000"
+				on:focus={(e) => {
+				  e.target.classList.add('outline', 'outline-white');
+				}}
+				on:blur={(e) => {
+				  e.target.classList.remove('outline-white');
+				  let value = parseFloat(e.target.value);
+				  let invalid = false;
+			  
+				  if (isNaN(value) || e.target.value === '') {
+					e.target.value = setting.min;
+					setting.value = setting.min;
+					invalid = true;
+				  } else if (value < setting.min) {
+					e.target.value = setting.min;
+					setting.value = setting.min;
+					invalid = true;
+				  } else if (value > setting.max) {
+					e.target.value = setting.max;
+					setting.value = setting.max;
+					invalid = true;
+				  } else {
+					setting.value = value;
+					e.target.classList.remove('outline', 'outline-red-500', 'outline-transparent');
+				  }
+			  
+				  if (invalid) {
+					e.target.classList.add('outline', 'outline-red-500');
+					setTimeout(() => {
+					  e.target.classList.replace('outline-red-500', 'outline-transparent');
+					  setTimeout(() => {
+						e.target.classList.remove('outline', 'outline-transparent');
+					  }, 2000);
+					}, 500);
+				  }
+				}}
+			  />
+			</li>
 			{/each}
-		</ul>
+		  </ul>
 	</nav>
 
 	<!-- Active filters TODO move -->
