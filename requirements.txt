@@ -1,3 +1,5 @@
 flask
 flask-svelte
 webuiapi
+pillow-avif-plugin
+PIL

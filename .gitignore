@@ -1,4 +1,3 @@
-# Ignore common Python virtual environment directories
 venv/
 env/
 .venv/
@@ -24,7 +23,18 @@ build/
 *.log
 
 # ingonre index
-app/static/index/**
+FlaskServer/app/static/
 
 # ignore images in files folder
 *.png
+
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
