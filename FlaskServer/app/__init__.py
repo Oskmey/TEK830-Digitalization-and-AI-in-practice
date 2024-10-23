@@ -37,7 +37,6 @@ def generate_image():
         )
 
         resultMask = rembgInt.rembg(input_image=uploaded_image, return_mask=True)
-        resultMask.images[0].save("output_maskTest.png")
 
         result = api.img2img(
             images=[uploaded_image],
@@ -69,9 +68,6 @@ def generate_image():
                     }
                 })
         
-
-        result.images[0].save("output_image.png")
-
         return jsonify({"message": "Image generated successfully", "result": result})
 
     except Exception as e:
