@@ -2,7 +2,7 @@
 	import { fileDrop } from './file.js';
 	import { uploadImage } from './flask.js';
     import { debug } from "svelte/internal";
-	import { writable } from 'svelte/store';
+	import { writable, get } from 'svelte/store';
 	import Check from "../../static/svelte/svg/Check.svelte";
 	import Cross from "../../static/svelte/svg/Cross.svelte";
 
@@ -40,7 +40,7 @@
 	const categories = writable([
 		new Category('Spring', 'Season', ''),
 		new Category('Summer', 'Season', ''),
-		new Category('Fall', 'Season', ''),
+		new Category('Fall', 'Season', 'product image, cozy, autumn, low lighting, brown hue, warm, soft, dim, golden, rustic, peaceful, inviting, intimate, quiet, serene, earthy, amber, glowing, tranquil, comforting, gentle, nostalgic.'),
 		new Category('Winter', 'Season', ''),
 		new Category('Easter', 'Holiday', ''),
 		new Category('Thanksgiving', 'Holiday', ''),
@@ -98,10 +98,16 @@
 
 	async function handleGenerate() {
     	isLoading = true;
-
+		const promptList = new Array();
 		try {
+		for (let category of get(categories)) {
+			if (category.isActive){
+				promptList.push(category.prompt)
+			}
+        }
+    
 		const generatedImage = await uploadImage(
-			imageFile
+			imageFile, promptList
 		);
 
 		imageSrc = generatedImage;
