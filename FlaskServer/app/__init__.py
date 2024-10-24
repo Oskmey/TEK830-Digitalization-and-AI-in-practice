@@ -25,6 +25,7 @@ def generate_image():
         denoising_strength = request.form.get('denoising_strength')
         width = int(request.form.get('width'))
         height = int(request.form.get('height'))
+        negativePrompt = request.form.get('negativePrompt')
 
         controlNet0 = ControlNetUnit(
             image=uploaded_image,
@@ -41,6 +42,7 @@ def generate_image():
         result = api.img2img(
             images=[uploaded_image],
             prompt=prompt,
+            negative_prompt=negativePrompt,
             sampler_name=sampler,
             steps=steps,
             cfg_scale=cfg_scale,

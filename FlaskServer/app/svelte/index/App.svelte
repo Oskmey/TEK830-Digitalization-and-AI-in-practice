@@ -9,8 +9,10 @@
 	let isLoading = false;
 	let negativePrompt = '';
 
+	$: promptList = $categories.filter(category => category.isActive).map(category => category.prompt).join(', ');
+	$: wordCount = negativePrompt.trim() === '' ? 0 : negativePrompt.trim().replace(/,/g, ' ').split(/\s+/).filter(Boolean).length;
 	$: imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
-	$: isGenerateDisabled = !imageFile || isLoading;
+	$: isGenerateDisabled = !imageFile || !$categories.some(category => category.isActive) || isLoading; 
 	$: buttonText = isLoading ? 'Generating...' : 'Generate';
 
 
@@ -98,14 +100,7 @@
 
 	async function handleGenerate() {
     	isLoading = true;
-		const promptList = new Array();
 		try {
-		for (let category of get(categories)) {
-			if (category.isActive){
-				promptList.push(category.prompt)
-			}
-        }
-    
 		const generatedImage = await uploadImage(
 			imageFile, 
 			promptList,
@@ -113,17 +108,18 @@
 			advancedSettings.find(setting => setting.name === 'CFG').value,
 			advancedSettings.find(setting => setting.name === 'Denoise').value,
 			advancedSettings.find(setting => setting.name === 'Width').value, //setting is object in array and find itterates over the array
-			advancedSettings.find(setting => setting.name === 'Height').value
+			advancedSettings.find(setting => setting.name === 'Height').value,
+			negativePrompt
 		);
 
 		imageFile = generatedImage;
 		} 
 		
 		catch (error) {
-		console.error('Error generating image:', error);
+			console.error('Error generating image:', error);
 		} 
 		finally {
-		isLoading = false;
+			isLoading = false;
 		}
   }
 
@@ -254,7 +250,8 @@
 			</div>
 			<div class="flex flex-col gap-2 w-80">
 				Negative prompt
-				<textarea type="text" bind:value={negativePrompt} placeholder="Example: flowers, trash..." class=" bg-dark-200 border border-white rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+				<textarea type="text" bind:value={negativePrompt} placeholder="Example: flowers, trash..." class=" bg-dark-200 border border-white rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+				{wordCount}
 			</div>
 		</section>
 
