@@ -287,7 +287,6 @@
 					<img src={imageSrc} class="max-w-full h-auto object-contain mb-4" alt='Generated_image' />
 						<button class="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" on:click={() => isGenerated.set(false)}>Close</button>
 						<a href={imageSrc} download="generated_image.png" class="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">Download</a>
-						<button class="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" on:click={() => isGenerated = false}>Close</button>
 					</div>
 				</div>
 		{/if}
