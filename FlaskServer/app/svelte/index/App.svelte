@@ -48,8 +48,9 @@
 		new Category('Thanksgiving', 'Holiday', ''),
 		new Category('Christmas', 'Holiday', ''),
 		new Category('Mordern', 'Style', ''),
-		new Category('Old', 'Style', ''),
-		new Category('Trash', 'Style', '')
+		new Category('American', 'Style', ''),
+		new Category('Traditional', 'Style', ''),
+		new Category('Industrial', 'Style', '')
 	]);
 
 	function toggleDropdown(dropdown) {
