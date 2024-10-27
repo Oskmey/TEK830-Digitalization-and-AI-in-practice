@@ -9,6 +9,9 @@
 	let isLoading = false;
 	let negativePrompt = '';
 
+
+	let isGenerated = writable(false);
+
 	$: promptList = $categories.filter(category => category.isActive).map(category => category.prompt).join(', ');
 	$: wordCount = negativePrompt.trim() === '' ? 0 : negativePrompt.trim().replace(/,/g, ' ').split(/\s+/).filter(Boolean).length;
 	$: imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
@@ -111,7 +114,7 @@
 			advancedSettings.find(setting => setting.name === 'Height').value,
 			negativePrompt
 		);
-
+		isGenerated.set(true);
 		imageFile = generatedImage;
 		} 
 		
@@ -276,6 +279,18 @@
 					{buttonText}
 				{/if}
 			</button>
+
+			{#if $isGenerated && !isLoading}
+			<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+				<div class="bg-dark-200 border border-white rounded-lg p-8 max-w-lg w-full">
+					<h2 class="text-2xl mb-4">Generated Image</h2>
+					<img src={imageSrc} class="max-w-full h-auto object-contain mb-4" alt='Generated_image' />
+						<button class="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" on:click={() => isGenerated.set(false)}>Close</button>
+						<a href={imageSrc} download="generated_image.png" class="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">Download</a>
+						<button class="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" on:click={() => isGenerated = false}>Close</button>
+					</div>
+				</div>
+		{/if}
 		</section>
 	</main>
 </div>
