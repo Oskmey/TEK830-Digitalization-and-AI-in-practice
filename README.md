@@ -20,20 +20,24 @@ This project was developed for the TEK830 Digitalization and AI in Practice cour
 
 ## Overview
 
-The aim of this project is to make img2img generation accessible and easy to use. By leveraging diffusion models, users can transform input images into new, AI-generated images through a simple and intuitive interface.
+The goal of this project is to make img2img generation both accessible and user-friendly. By utilizing diffusion models, users can effortlessly transform their input images into new, AI-generated visuals through a simple and intuitive interface. Additionally, the AI can change product backgrounds, allowing them to be easily placed in different environments.
 
 ## Features
 
 - **User-Friendly Interface**: Simplified frontend for easy navigation and use.
 - **Image Upload and Generation**: Upload images and generate new ones using diffusion models.
-- **Real-Time Processing**: Quick image transformation with minimal delay.
+- **Real-Time Processing**: image transformation.
 - **Customizable Parameters**: Adjust settings to refine image generation results.
-
+- **Customizable backgrounds**: Adjust/change backgrounds of images easily.
+- **Operates on an intranet**: Configure settings to fine-tune image generation results.
 ## Technologies Used
 
-- **Frontend**: Svelte
+- **Frontend**: Svelte 4
 - **Backend**: Flask
 - **Machine Learning**: Diffusion models for image generation
+- **Semantic segmentation with PyTorch**: [Generate masks for objects easliy](https://github.com/milesial/Pytorch-UNet)
+- **Controlnet units**: [Generate depth maps](https://github.com/lllyasviel/ControlNet)
+- **webui api**: [API client for AUTOMATIC1111/stable-diffusion-webui](https://github.com/mix1009/sdwebuiapi)
 
 ## Getting Started
 
@@ -50,8 +54,9 @@ The aim of this project is to make img2img generation accessible and easy to use
 1. **Clone the Repository**
 
         ```bash
-        git clone *http link*
-        cd yourproject/backend
+        git clone https://github.com/Oskmey/TEK830-Digitalization-and-AI-in-practice.git
+        cd TEK830-Digitalization-and-AI-in-practice
+
         ```
 
 2. **Create a Virtual Environment**
@@ -72,7 +77,7 @@ The aim of this project is to make img2img generation accessible and easy to use
 1. **Navigate to the Frontend Directory**
 
         ```bash
-        cd ../frontend
+        cd ../Flaskserver
         ```
 
 2. **Install Frontend Dependencies**
@@ -83,22 +88,13 @@ The aim of this project is to make img2img generation accessible and easy to use
 
 ## Usage
 
-### Running the Backend Server
+### Running
 
-1. **Start the Flask Server**
-
-        ```bash
-        cd backend
-        flask run
-        ```
-
-### Running the Frontend Application
-
-1. **Start the Svelte Development Server**
+1. **Start the Flask Server inside of Flaskserver**
 
         ```bash
-        cd frontend
-        npm run dev
+        npm run
+   
         ```
 
 ### Accessing the Application
