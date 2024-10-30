@@ -11,6 +11,7 @@ This project was developed for the TEK830 Digitalization and AI in Practice cour
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
+    - [System Requirements](#system-requirements)
     - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -47,6 +48,16 @@ The goal of this project is to make img2img generation both accessible and user-
 - Node.js and npm
 - Virtual Environment tool (optional but recommended)
 - **Stable Diffusion Web UI**: [AUTOMATIC1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+
+### System Requirements
+
+- **Operating System**: Windows 10 or later, Linux (Ubuntu 20.04+), or macOS Catalina or later.
+- **CPU**: Intel i5/Ryzen 5 or better.
+- **GPU**: NVIDIA GPU with at least 6GB VRAM for optimal performance.
+- **RAM**: Minimum 16GB.
+- **Storage**: At least 32GB of free space.
+- **Internet Connection**: Required for downloading dependencies and models.
+
 
 ### Installation
 
