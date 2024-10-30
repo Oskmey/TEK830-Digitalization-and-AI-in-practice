@@ -8,7 +8,7 @@
 	let imageFile = null;
 	let isLoading = false;
 	let negativePrompt = '';
-
+	let genImageFile = null;
 
 	let isGenerated = writable(false);
 
@@ -17,7 +17,7 @@
 	$: imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
 	$: isGenerateDisabled = !imageFile || !$categories.some(category => category.isActive) || isLoading; 
 	$: buttonText = isLoading ? 'Generating...' : 'Generate';
-
+	$: genImageSrc = genImageFile ;
 
 	// Categories
 	class CategoryType {
@@ -48,8 +48,8 @@
 		new Category('Fall', 'Season', 'product image, cozy, autumn, low lighting, brown hue, warm, soft, dim, golden, rustic, peaceful, inviting, intimate, quiet, serene, earthy, amber, glowing, tranquil, comforting, gentle, nostalgic.'),
 		new Category('Winter', 'Season', ''),
 		new Category('Easter', 'Holiday', ''),
-		new Category('Thanksgiving', 'Holiday', ''),
-		new Category('Christmas', 'Holiday', ''),
+		new Category('Thanksgiving', 'Holiday', 'Cozy, modern kitchen interior with warm, even lighting, free of excessive highlights or mist. Rustic wooden cabinetry adorned with autumn decorations and a roasted turkey with other american thanksgiving foods, clear windows, and a festive atmosphere for Thanksgiving gatherings. Portraits of autumn on the wall.'),
+		new Category('Christmas', 'Holiday', 'Cozy, modern kitchen interior with warm, even lighting, without excessive highlights or mist. Rustic wooden cabinetry adorned with Christmas decorations, clear windows, and a cheerful atmosphere.'),
 		new Category('Mordern', 'Style', ''),
 		new Category('American', 'Style', ''),
 		new Category('Traditional', 'Style', ''),
@@ -116,7 +116,7 @@
 			negativePrompt
 		);
 		isGenerated.set(true);
-		imageFile = generatedImage;
+		genImageFile = generatedImage;
 		} 
 		
 		catch (error) {
@@ -263,7 +263,7 @@
 			<label for="filepicker" class="px-16 py-24 bg-dark-200 border border-white rounded-lg transition ease-in-out hover:bg-dark-100 cursor-pointer">
 				{#if !imageSrc}
 					<h1 class="text-3xl text-red-500 font-bold tracking-tight text-center mb-5">Click to add image</h1>
-					<p class="text-xs">The image should contain your product with a white background</p>
+					<p class="text-xs">The image should contain your product in a room.</p>
 				{:else}
 					<img src={imageSrc} class="max-w-xs h-auto object-contain" id="output" style="display:block;" alt='Uploaded_image' />
 				{/if}
@@ -285,9 +285,9 @@
 			<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
 				<div class="bg-dark-200 border border-white rounded-lg p-8 max-w-lg w-full">
 					<h2 class="text-2xl mb-4">Generated Image</h2>
-					<img src={imageSrc} class="max-w-full h-auto object-contain mb-4" alt='Generated_image' />
+					<img src={genImageSrc} class="max-w-full h-auto object-contain mb-4" alt='Generated_image' />
 						<button class="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" on:click={() => isGenerated.set(false)}>Close</button>
-						<a href={imageSrc} download="generated_image.png" class="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">Download</a>
+						<a href={genImageSrc} download="generated_image.png" class="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">Download</a>
 					</div>
 				</div>
 		{/if}

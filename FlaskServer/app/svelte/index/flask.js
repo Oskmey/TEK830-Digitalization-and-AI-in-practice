@@ -22,9 +22,14 @@ export async function uploadImage(image, promptList, steps=20, cfg_scale=7.0, de
   
       let data = await response.json();
   
-      if (data.image) {
-        return data.image;
-      } else {
-        throw new Error('No image returned from the server');
-      }
+      console.log(data); // Log the response to inspect its structure
+
+    // Accessing the image
+    if (data.result && data.result.image) {
+    // Assuming it's a base64 string, you can directly set it to an image element
+    let imageSrc = `data:image/png;base64,${data.result.image}`;
+    return imageSrc;
+    } else {
+    throw new Error('No image returned from the server');
+}
 }

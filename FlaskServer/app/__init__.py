@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from flask_svelte import render_template
 from webuiapi import webuiapi, RemBGInterface, ControlNetUnit
 from PIL import Image
-
+import base64
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -69,7 +70,18 @@ def generate_image():
                         ]
                     }
                 })
-        
+        image = result.images[0]
+        buffered = BytesIO()
+        image.save(buffered, format="PNG")
+        image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+
+        # Return JSON response with the base64-encoded image
+        return jsonify({
+            "message": "Image generated successfully",
+            "result": {
+                "image": image_base64
+            }
+        })
         return jsonify({"message": "Image generated successfully", "result": result})
 
     except Exception as e:
